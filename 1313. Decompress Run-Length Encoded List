@@ -1,0 +1,36 @@
+class Solution {
+    public int[] decompressRLElist(int[] nums) {
+        int newArrayLength=0;
+        for(int i=0;i<nums.length;i=i+2){
+            newArrayLength+=nums[i];
+        }
+        int []ans=new int[newArrayLength];
+        int index=0;
+        for(int j=0;j<nums.length;j=j+2){
+            int temp=0;
+            while(temp<nums[j]){
+                ans[index]=nums[j+1];
+                temp++;
+                index++;
+            }
+        }
+        return ans;
+    }
+}
+
+
+class Solution {
+    public int[] decompressRLElist(int[] nums) {
+        List<Integer> l=new ArrayList<Integer>();
+        for(int i=0;i<nums.length;i=i+2){
+            for(int j=0;j<nums[i];j++){
+                l.add(nums[i+1]);
+            }
+        }
+        int[] arr=new int[l.size()];
+        for(int k=0;k<l.size();k++){
+            arr[k]=l.get(k);
+        }
+        return arr;
+    }
+}
