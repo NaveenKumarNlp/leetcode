@@ -1,40 +1,18 @@
-import java.util.LinkedList;
 class Solution {
     public int sumIndicesWithKSetBits(List<Integer> nums, int k) {
         int sum=0;
-        int max=0;
         for(int i=0;i<nums.size();i++){
-            if(max<nums.get(i)){
-                max=nums.get(i);
-            }
-        }
-       // System.out.println(max);
-        int t=max;
-        int count=0;
-        while(t!=0){
-            count++;
-            t/=2;
-        }
-        //System.out.println("count---"+count);
-        for(int i=0;i<nums.size();i++){
-            int temp=nums.get(i);
-            System.out.println("-----"+temp);
-            int setBit=0;
-            int[] arr=new int[count];
-            int  c=count-1;
-            while(temp!=0){
-                int lt=temp%2;
-                arr[c--]=temp%2;
+            int temp=i,tot=0;
+            while(temp>0){
+                if(temp%2==1){
+                    tot++;
+                }
                 temp/=2;
             }
-            for(int j:arr){
-                System.out.print(j);
-            }
-            System.out.println();
-            if(arr[k-1]==1){
-                //System.out.println("ans--"+nums.get(i));
+            if(tot==k){
                 sum+=nums.get(i);
             }
+            
         }
         return sum;
     }
