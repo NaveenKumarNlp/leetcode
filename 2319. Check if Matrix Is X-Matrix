@@ -1,0 +1,20 @@
+class Solution {
+    public boolean checkXMatrix(int[][] grid) {
+        int len=grid.length;
+        for(int i=0;i<len;i++){
+            for(int j=0;j<len;j++){
+                if(i!=j && i+j!=len-1){ --------> non diagonals 
+                    if(grid[i][j]!=0){
+                        return false;
+                    }
+                }else if(grid[i][j]==0){  -----> diagonals 
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}
+
+non diagonals ===>  i!=j && i+j!=len-1
+diagonals     ===>  i==j || (i+j==len-1 && i!=j)
