@@ -1,0 +1,26 @@
+class Solution {
+    public int[][] flipAndInvertImage(int[][] image) {
+        int len=image.length;
+        for(int i=0;i<len;i++){
+            for(int k=0;k<(len+1)/2;k++){
+                if(image[i][k]==image[i][len-k-1]){
+                    image[i][k]=1-image[i][k];
+                    image[i][len-k-1]=image[i][k];
+                }
+            }
+        }
+        return image;
+    }
+}
+
+The idea is simple. For each row, use two pointers. One is going forward and the other is going backward.
+
+(1). If the two elements are the same, then make a slight change like this 0 -> 1 or 1 -> 0.
+(2). If the two elements are different, DON'T do anything. Just let it go.
+
+[1,0,0,0] ---> [0,0,0,1] ---> [1,1,1,0]
+
+[1,1,0,0]        [1,1,0,0]    
+[1,0,0,1]        [0,1,1,0]
+[0,1,1,1]  --->  [0,0,0,1]
+[1,0,1,0]        [1,0,1,0]
