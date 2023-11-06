@@ -1,0 +1,13 @@
+class Solution {
+    public int maximizeSum(int[] nums, int k) {
+        int high=0;
+        for(int i:nums){
+            high=Math.max(high,i);
+        }
+        int sum=high;
+        for(int i=1;i<k;i++){
+            sum+=high+i;
+        }
+        return sum;
+    }
+}
