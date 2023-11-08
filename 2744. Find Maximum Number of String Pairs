@@ -1,0 +1,16 @@
+class Solution {
+    public int maximumNumberOfStringPairs(String[] words) {
+       
+        HashMap<String,Integer> hm=new HashMap<>();
+        int sum=0;
+        for(String s:words){
+            String str=new StringBuilder(s).reverse().toString();
+            if(hm.containsKey(str)){
+                sum++;
+            }else{
+                hm.put(s,0);
+            }
+        }
+        return sum;
+    }
+}
