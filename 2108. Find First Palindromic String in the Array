@@ -1,0 +1,20 @@
+class Solution {
+    public String firstPalindrome(String[] words) {
+        for(String word:words){
+            int i=0,j=word.length()-1;
+            boolean flag=true;
+            while(i<j){
+                if(word.charAt(i)!=word.charAt(j)){
+                    flag=false;
+                    break;
+                }
+                i++;
+                j--;
+            }
+            if(flag){
+                return word;
+            }
+        }
+        return "";
+    }
+}
