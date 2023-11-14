@@ -1,0 +1,14 @@
+class Solution {
+    public int[] separateDigits(int[] nums) {
+        StringBuilder sb=new StringBuilder();
+        for(int i=0;i<nums.length;i++){
+            sb.append(nums[i]);
+        }
+        String str=sb.toString();
+        int []answer=new int[str.length()];
+        for(int i=0;i<str.length();i++){
+            answer[i]=Character.getNumericValue(str.charAt(i));
+        }
+        return answer;
+    }
+}
