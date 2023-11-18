@@ -1,0 +1,24 @@
+class Solution {
+    public int[] sortByBits(int[] arr) {
+        HashMap<Integer,ArrayList<Integer>> hm=new HashMap<>();
+        for(int i:arr){
+            int temp=i;
+            int count=0;
+            while(temp>0){
+                if(temp%2!=0){
+                    count++;
+                }
+                temp/=2;
+            }
+            hm.computeIfAbsent(count, k -> new ArrayList<>()).add(i);
+        }
+        int index=0;
+        for(ArrayList<Integer> al:hm.values()){
+            Collections.sort(al);
+            for(int i:al){
+                arr[index++]=i;
+            }
+        }
+        return arr;
+    }
+}
