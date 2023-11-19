@@ -1,0 +1,20 @@
+class Solution {
+    public int findGCD(int[] nums) {
+        int min=1000,max=0;
+        for(int x:nums){
+            if(x<min){
+                min=x;
+            }
+            if(x>max){
+                max=x;
+            }
+        }
+        int answer=0;
+        for(int i=1;i<=min;i++){
+            if(min%i==0 && max%i==0){
+                answer=i;
+            }
+        }
+        return answer;
+    }
+}
