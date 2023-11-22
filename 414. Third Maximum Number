@@ -1,0 +1,22 @@
+class Solution {
+    public int thirdMax(int[] nums) {
+        int temp=(int)(-1*Math.pow(2,31));
+        int max1=temp,max2=temp,max3=temp;
+        HashSet<Integer> hs=new HashSet<>();
+        for(int num:nums){
+            if(hs.add(num))
+            if(num>max1){
+                max3=max2;
+                max2=max1;
+                max1=num;
+            }else if(num>max2){
+                max3=max2;
+                max2=num;
+            }else if(num>max3){
+                max3=num;
+            }
+        }
+        return hs.size()>=3?max3:max1;
+    }
+}
+
