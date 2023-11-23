@@ -1,3 +1,45 @@
+
+class Solution {
+    public int[] sortArrayByParityII(int[] nums) {
+        int even = 0, odd = 1;
+        while (even < nums.length && odd < nums.length) {
+            while (even < nums.length && nums[even] % 2 == 0) {
+                even += 2;
+            }
+            while (odd < nums.length && nums[odd] % 2 == 1) {
+                odd += 2;
+            }
+            if (even < nums.length && odd < nums.length) {
+                int temp = nums[odd];
+                nums[odd] = nums[even];
+                nums[even] = temp;
+            }
+        }
+        return nums;
+    }
+}
+
+
+class Solution {
+    public int[] sortArrayByParityII(int[] nums) {
+        int first=0,Last=nums.length-1;
+        while(first<Last){
+            if((first%2==0 && nums[first]%2==0) || (first%2==1 && nums[first]%2==1)){
+                first++;
+            }else if((nums[first]%2==0 && nums[Last]%2==1) ||(nums[first]%2==1 && nums[Last]%2==0) ){
+                int temp=nums[first];
+                nums[first]=nums[Last];
+                nums[Last]=temp;
+                first++;
+                Last=nums.length-1;
+            }else{
+                Last--;
+            }
+        }
+        return nums;
+    }
+}
+
 class Solution {
     public int[] sortArrayByParityII(int[] nums) {
         int first=0,Last=nums.length-1;
