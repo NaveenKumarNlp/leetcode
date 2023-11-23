@@ -1,0 +1,23 @@
+public class Solution {
+    public int[] sortArrayByParity(int[] nums) {
+        int first = 0, last = nums.length - 1;
+        
+        while (first < last) {
+            if (nums[first] % 2 == 0) {
+                // If the element at the 'first' index is even, move the 'first' pointer to the right.
+                first++;
+            } else if (nums[last] % 2 == 1) {
+                // If the element at the 'last' index is odd, move the 'last' pointer to the left.
+                last--;
+            } else {
+                // If the element at 'first' is odd and the element at 'last' is even, swap them.
+                int temp = nums[first];
+                nums[first] = nums[last];
+                nums[last] = temp;
+            }
+        }
+        
+        // The array is now partitioned into even and odd sections, with 'first' marking the boundary.
+        return nums;
+    }
+}
