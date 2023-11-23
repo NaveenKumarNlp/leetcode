@@ -1,0 +1,54 @@
+class Solution {
+    public int[] sortArrayByParityII(int[] nums) {
+        int first=0,Last=nums.length-1;
+        while(first<nums.length){
+            System.out.println(first+"  "+nums[first]+"  "+Last);
+            if((first%2==0 && nums[first]%2==0) || (first%2==1 && nums[first]%2==1)){
+                System.out.println("value is correct "+first);
+                first++;
+            }else{
+                if(nums[first]%2==0){
+                   System.out.println("odd number need "+first);
+                    if(nums[Last]%2==1){
+                        System.out.println("odd value found ");
+                        int temp=nums[first];
+                        nums[first]=nums[Last];
+                        nums[Last]=temp;
+                        first++;
+                        Last=nums.length-1;
+                        System.out.print(" Array values are -> ");
+                        for(int num:nums){
+                            System.out.print(num+"  ");
+                        }
+                        System.out.println();
+                    }else{
+                        System.out.println(" odd value not found nums[Last] = "+nums[Last]+" index = "+Last);
+                        Last--;
+                        System.out.println(" index = "+Last);
+                    }
+
+                }else if(nums[first]%2==1){
+                   System.out.println("even number need "+first);
+                    if(nums[Last]%2==0){
+                       System.out.println("even value found ");
+                        int temp=nums[first];
+                        nums[first]=nums[Last];
+                        nums[Last]=temp;
+                        first++;
+                        Last=nums.length-1;
+                        System.out.print(" Array values are -> ");
+                        for(int num:nums){
+                            System.out.print(num+"  ");
+                        }
+                        System.out.println();
+                    }else{
+                        System.out.println(" even value not found nums[Last] = "+nums[Last]+" index = "+Last);
+                        Last--;
+                        System.out.println(" index = "+Last);
+                    }
+                }
+            }
+        }
+        return nums;
+    }
+}
