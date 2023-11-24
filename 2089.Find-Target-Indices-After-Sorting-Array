@@ -1,0 +1,30 @@
+class Solution {
+    public List<Integer> targetIndices(int[] nums, int target) {
+        ArrayList<Integer> answer=new ArrayList<>();
+        int count=0,lessthan=0;
+        for(int num:nums){
+            if(num==target)count++;
+            else if(num<target)lessthan++;
+        }
+        for(int i=0;i<count;i++){
+            answer.add(lessthan++);
+        }
+
+        /*int []temp=new int[101];
+        for(int num:nums){
+            ++temp[num];
+        }
+        int index=0;
+        for(int i=0;i<temp.length;i++){
+            if(temp[i]>0){
+                if(i==target){
+                    answer.add(index);
+                }
+                index++;
+                temp[i]--;
+                i--;
+            }
+        }*/
+        return answer;
+    }
+}
