@@ -1,0 +1,19 @@
+class Solution {
+    public List<List<Integer>> mergeSimilarItems(int[][] items1, int[][] items2) {
+        TreeMap<Integer,Integer> map=new TreeMap<>();
+        ArrayList<List<Integer>> answer=new ArrayList<>();
+        for(int []array:items1){
+            map.merge(array[0],array[1],Integer::sum);
+        }
+        for(int []array:items2){
+            map.merge(array[0],array[1],Integer::sum);
+        }
+        for(Map.Entry<Integer,Integer> tm:map.entrySet()){
+            ArrayList<Integer> list=new ArrayList<>();
+            list.add(tm.getKey());
+            list.add(tm.getValue());
+            answer.add(list);
+        }
+        return answer;
+    }
+}
