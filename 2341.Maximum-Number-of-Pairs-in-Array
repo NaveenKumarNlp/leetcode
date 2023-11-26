@@ -1,0 +1,14 @@
+class Solution {
+    public int[] numberOfPairs(int[] nums) {
+        int []temp=new int[101];
+        for(int num:nums){
+            ++temp[num];
+        }
+        int single=0,pair=0;
+        for(int i:temp){
+            pair+=i/2;
+            single+=i%2;
+        }
+        return new int[]{pair,single};
+    }
+}
