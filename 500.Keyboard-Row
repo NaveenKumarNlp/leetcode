@@ -1,0 +1,39 @@
+class Solution {
+    public String[] findWords(String[] words) {
+        ArrayList<String> ans = new ArrayList<String>();
+        for(String s:words){   
+            if(s.matches("^[qwertyuiopQWERTYUIOP]*$") || s.matches("^[asdfghjklASDFGHJKL]*$") || s.matches("^[zxcvbnm]ZXCVBNM*$")){
+                ans.add(words[i]);
+            }
+        }
+        String[] ret = new String[ans.size()];
+        return ans.toArray(ret);
+    }
+}
+
+class Solution {
+    public String[] findWords(String[] words) {
+        String s1="qwertyuiopQWERTYUIOP",s2="asdfghjklASDFGHJKL",s3="zxcvbnmZXCVBNM";
+        ArrayList<String> st=new ArrayList<>();
+        for(String word:words){
+            int t1=0,t2=0,t3=0;
+            for(char ch:word.toCharArray()){
+                if(s1.indexOf(ch)!=-1){
+                    t1++;
+                }else if(s2.indexOf(ch)!=-1){
+                    t2++;
+                }else if(s3.indexOf(ch)!=-1){
+                    t3++;
+                }
+            }
+            if(t1==word.length() || t2==word.length() || t3==word.length() ){
+                st.add(word);
+            }
+        }
+        String []str=new String[st.size()];
+        for(int i=0;i<st.size();i++){
+            str[i]=st.get(i);
+        }
+        return str;
+    }
+}
