@@ -1,0 +1,36 @@
+class Solution {
+    public static void addElement(int []array,int []temp){
+        HashSet<Integer> set=new HashSet<>();
+        for(int i=0;i<temp.length;i++){
+            if(set.add(temp[i])){
+                ++array[temp[i]];
+            }
+        }
+    }
+    public List<Integer> twoOutOfThree(int[] nums1, int[] nums2, int[] nums3) {
+        ArrayList<Integer> answer=new ArrayList<Integer>();
+        int []arr=new int[101];
+        addElement(arr,nums1);
+        addElement(arr,nums2);
+        addElement(arr,nums3);
+
+        for(int i=1;i<101;i++){
+            if(arr[i]>=2){
+                answer.add(i);
+            }
+        }
+        return answer;
+    }
+}
+
+
+public List<Integer> twoOutOfThree(int[] nums1, int[] nums2, int[] nums3) {
+	Set<Integer> set1 = new HashSet<>(), set2 = new HashSet<>(), set3 = new HashSet<>(), set = new HashSet<>();
+	for(int i: nums1) { set1.add(i); set.add(i); }
+	for(int i: nums2) { set2.add(i); set.add(i); }
+	for(int i: nums3) { set3.add(i); set.add(i); }
+	List<Integer> result = new ArrayList<>();
+	for(int i: set) 
+		if(set1.contains(i) && set2.contains(i) || set2.contains(i) && set3.contains(i) || set1.contains(i) && set3.contains(i)) result.add(i);
+	return result;
+}
