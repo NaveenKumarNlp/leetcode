@@ -1,0 +1,38 @@
+    public boolean divideArray(int[] nums) {
+        Set<Integer> seen = new HashSet<>();
+        for (int num : nums) {
+            if (!seen.add(num)) {
+                seen.remove(num);
+            }
+        }
+        return seen.isEmpty();
+    }
+
+class Solution {
+    public boolean divideArray(int[] nums) {
+        int []num=new int[501];
+        for(int i=0;i<nums.length;i++){
+            num[nums[i]]++;
+        }
+        int count=0;
+        for(int i=1;i<501;i++){
+            if(num[i]!=0){
+                count+=num[i]/2;
+            }
+        }
+        return count==nums.length/2?true:false; 
+    }
+}
+
+class Solution {
+    public boolean divideArray(int[] nums) {
+        Arrays.sort(nums);
+       // int count = 0;
+        for( int i = 0; i< nums.length ; i+=2){
+            if(nums[i] != nums[i+1]){
+                return false;
+            }
+        }
+        return true;
+    }
+}
