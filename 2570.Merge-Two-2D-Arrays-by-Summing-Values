@@ -1,0 +1,52 @@
+class Solution {
+    public static void addelement(TreeMap<Integer,Integer> map,int [][]num){
+        for(int []n:num){
+            if(map.containsKey(n[0])){
+                map.put(n[0],map.get(n[0])+n[1]);
+            }else{
+                map.put(n[0],n[1]);
+            }
+        }
+    }
+    public int[][] mergeArrays(int[][] nums1, int[][] nums2) {
+        TreeMap<Integer,Integer> ts=new TreeMap<>();
+        addelement(ts,nums1);
+        addelement(ts,nums2);
+        int [][]num=new int[ts.size()][2];
+        int index=0;
+        for(Map.Entry<Integer,Integer> entry:ts.entrySet()){
+            num[index][0]=entry.getKey();
+            num[index][1]=entry.getValue();
+            index++;
+        }
+        return num;
+    }
+}
+class Solution {
+    public int[][] mergeArrays(int[][] nums1, int[][] nums2) {
+       int n1=nums1.length,n2=nums2.length,i=0,j=0;
+       ArrayList<int []> temp=new ArrayList<>();
+       while(i<n1 && j<n2){
+           if(nums1[i][0]==nums2[j][0]){
+               temp.add(new int[]{nums1[i][0],nums1[i][1]+nums2[j][1]});
+               i++;
+               j++;
+           }else if(nums1[i][0]<nums2[j][0]){
+               temp.add(new int[]{nums1[i][0],nums1[i][1]});
+               i++;
+           }else if(nums1[i][0]>nums2[j][0]){
+               temp.add(new int[]{nums2[j][0],nums2[j][1]});
+               j++;
+           }
+       }
+        while(i<n1){
+            temp.add(new int[]{nums1[i][0],nums1[i][1]});
+            i++;
+        }
+        while(j<n2){
+            temp.add(new int[]{nums2[j][0],nums2[j][1]});
+            j++;
+        }
+        return temp.toArray(new int[temp.size()][2]);
+    }
+}
