@@ -1,0 +1,36 @@
+    public int minimumOperations(int[] nums) {
+        Set<Integer> set = new HashSet<>();
+        for (int a: nums)
+            if (a > 0)
+                set.add(a);
+        return set.size();
+    }
+
+class Solution {
+    public int minimumOperations(int[] nums) {
+        int min=Integer.MAX_VALUE;
+        for(int num:nums){
+            if(num>0 && min>num){
+                min=num;
+            }
+        }
+        int count=0;
+        while(true){
+            int rowMin=Integer.MAX_VALUE;
+            for(int i=0;i<nums.length;i++){
+                if(nums[i]!=0){
+                    nums[i]-=min;
+                    if(nums[i]!=0 && nums[i]<rowMin){
+                        rowMin=nums[i];
+                    }
+                }
+            }
+            if(min==Integer.MAX_VALUE){
+                break;
+            }
+            min=rowMin;
+            count++;
+        }
+        return count;
+    }
+}
