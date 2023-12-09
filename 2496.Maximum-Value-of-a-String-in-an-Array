@@ -1,0 +1,34 @@
+class Solution {
+    public int maximumValue(String[] strs) {
+        int max = 0;
+        
+        for (String s : strs) {
+            boolean onlyDigits = s.chars().allMatch(Character::isDigit);
+            
+            if (onlyDigits) max = Math.max(max, Integer.valueOf(s));
+            else max = Math.max(max, s.length());
+        }
+        
+        return max;
+    }
+}
+
+// TC: O(n ^ 2), SC: O(1)
+
+class Solution {
+    public int maximumValue(String[] strs) {
+        int max=Integer.MIN_VALUE;
+        for(int i=0;i<strs.length;i++){
+            try{
+                if(max<Integer.parseInt(strs[i])){
+                    max=Integer.parseInt(strs[i]);
+                }
+            }catch(Exception e){
+                if(max<strs[i].length()){
+                    max=strs[i].length();
+                }
+            }
+        }
+        return max;
+    }
+}
