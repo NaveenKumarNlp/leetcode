@@ -1,0 +1,53 @@
+class Solution {
+    public int countCharacters(String[] words, String chars) {
+        int sum=0;
+        for(int i=0;i<words.length;i++){
+            if(canForm(chars,words[i])){
+                sum+=words[i].length();
+            }
+        }
+        return sum;
+    }
+    public static boolean canForm(String c,String s){
+        int []arr=new int[26];
+        for(int i=0;i<c.length();i++){
+            arr[c.charAt(i)-'a']++;
+        }
+        for(int j=0;j<s.length();j++){
+            if(arr[s.charAt(j)-'a']!=0){
+                arr[s.charAt(j)-'a']--;
+            }else{
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+class Solution {
+    public int countCharacters(String[] words, String chars) {
+        int sum=0;
+        int []arr=new int[26];
+        for(int i=0;i<chars.length();i++){
+            arr[chars.charAt(i)-'a']++;
+        }
+        for(int i=0;i<words.length;i++){
+            int count=0,j;
+            for(j=0;j<words[i].length();j++){
+                if(arr[words[i].charAt(j)-'a']!=0){
+                    arr[words[i].charAt(j)-'a']--;
+                    count++;
+                }else{
+                    break;
+                }
+            }
+            if(count==words[i].length()){
+                sum+=count;
+            }
+            for(int k=0;k<j;k++){
+                arr[words[i].charAt(k)-'a']++;
+            }
+        }
+        return sum;
+    }
+}
