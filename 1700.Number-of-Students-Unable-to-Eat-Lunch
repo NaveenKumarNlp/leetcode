@@ -1,0 +1,60 @@
+class Solution {
+    public int countStudents(int[] students, int[] sandwiches) {
+        for(int i=0;i<sandwiches.length;i++){
+            boolean flag=false;
+            for(int j=0;j<students.length;j++){
+                if(sandwiches[i]==students[j]){
+                    students[j]=10;
+                    flag =true;
+                    break;
+                }
+            }
+            if(!flag){
+                return sandwiches.length-i;
+            }
+        }
+        return 0;
+    }
+}
+
+class Solution {
+    public int countStudents(int[] students, int[] sandwiches) {
+        int ones=0,zeros=0;
+        for(int s:students){
+            if(s==1){
+                ones++;
+            }else{
+                zeros++;
+            }
+        }
+        for(int s:sandwiches){
+            if(s==1){
+                if(ones<=0)
+                    return zeros;
+                ones--;
+            }else if(s==0){
+                if(zeros<=0)
+                    return ones;
+                zeros--;
+            }
+        }
+        return 0;
+    }
+}
+
+class Solution {
+    public int countStudents(int[] students, int[] sandwiches) {
+        int []count={0,0};
+        for(int s:students){
+            count[s]++;
+        }
+        for(int k=0;k<sandwiches.length;k++){
+            if(count[sandwiches[k]]>0){
+                count[sandwiches[k]]--;
+            }else{
+                return sandwiches.length-k;
+            }
+        }
+        return 0;
+    }
+}
