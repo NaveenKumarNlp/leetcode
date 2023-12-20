@@ -1,0 +1,29 @@
+class Solution {
+    public int garbageCollection(String[] garbage, int[] travel) {
+        int gt=0,pt=0,mt=0,gtt=0,ptt=0,mtt=0;
+        for(int i=0;i<garbage.length;i++){
+            if(i!=0){
+                ptt+=travel[i-1];
+                gtt+=travel[i-1];
+                mtt+=travel[i-1];
+                pt+=travel[i-1];
+                gt+=travel[i-1];
+                mt+=travel[i-1];
+            }
+            for(int j=0;j<garbage[i].length();j++){
+                char ch=garbage[i].charAt(j);
+                if(ch=='G'){
+                    gt++;
+                    gtt=0;
+                }else if(ch=='P'){
+                    pt++;
+                    ptt=0;
+                }else{
+                    mt++;
+                    mtt=0;
+                }
+            }
+        }
+        return pt+gt+mt-ptt-gtt-mtt;
+    }
+}
