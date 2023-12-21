@@ -1,0 +1,78 @@
+class Solution {
+    public int[] minOperations(String boxes) {
+        int []arr=new int[boxes.length()];
+        for(int i=0;i<boxes.length();i++){
+            for(int j=0;j<boxes.length();j++){
+                if(i!=j && boxes.charAt(j)=='1'){
+                    arr[i]+=Math.abs(i-j);
+                }
+            }
+        }
+        return arr;
+    }
+}
+
+
+class Solution {
+    public int[] minOperations(String boxes) {
+        int []arr=new int[boxes.length()];
+        int sb=0,sf=0,bo=0,fo=0;
+        for(int i=0;i<boxes.length();i++){
+            if(boxes.charAt(i)=='1'){
+                sb+=Math.abs(0-i);
+                sf+=Math.abs(boxes.length()-1-i);
+                bo++;
+            }
+        }
+        fo=bo;
+        for(int i=0;i<boxes.length();i++){
+            if(i!=0){
+                sb-=bo;
+            }
+            arr[i]+=sb;
+            if(boxes.charAt(i)=='1'){
+                bo--;
+            }
+            if(boxes.length()-1-i!=boxes.length()-1){
+                sf-=fo;
+            }
+            arr[boxes.length()-1-i]+=sf;
+            if(boxes.charAt(boxes.length()-1-i)=='1'){
+                fo--;
+            }
+        }
+        return arr;
+    }
+}
+
+class Solution {
+    public int[] minOperations(String boxes) {
+        int []arr=new int[boxes.length()];
+        for(int i=0,step=0,count=0;i<boxes.length();i++){
+            arr[i]+=step;
+            count+=boxes.charAt(i)=='1'?1:0;
+            step+=count;
+        }
+        for(int i=boxes.length()-1,step=0,count=0;i>=0;i--){
+            arr[i]+=step;
+            count+=boxes.charAt(i)=='1'?1:0;
+            step+=count;
+        }
+        return arr;
+    }
+}
+
+class Solution {
+    public int[] minOperations(String boxes) {
+        int []arr=new int[boxes.length()];
+        for(int i=0,fstep=0,fcount=0,bstep=0,bcount=0;i<boxes.length();i++){
+            arr[i]+=fstep;
+            fcount+=boxes.charAt(i)=='1'?1:0;
+            fstep+=fcount;
+            arr[boxes.length()-1-i]+=bstep;
+            bcount+=boxes.charAt(boxes.length()-1-i)=='1'?1:0;
+            bstep+=bcount;
+        }
+        return arr;
+    }
+}
