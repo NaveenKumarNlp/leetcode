@@ -1,0 +1,63 @@
+class Solution {
+    public int[] processQueries(int[] queries, int m) {
+        ArrayList<Integer> p = new ArrayList<>();
+        for(int i = 1; i <= m; i++) {
+            p.add(i);
+        }
+        int ans[] = new int[queries.length];
+        for(int i = 0; i < queries.length; i++) {
+            ans[i] = p.indexOf(queries[i]);
+            p.remove(ans[i]);
+            p.add(0, queries[i]);
+        }
+        return ans;
+    }
+}
+
+class Solution {
+    public int[] processQueries(int[] queries, int m) {
+        int []nums=new int[m];
+        for(int i=0;i<m;i++){
+            nums[i]=i+1;
+        }
+        for(int i=0;i<queries.length;i++){
+            for(int j=0;j<m;j++){
+                if(nums[j]==queries[i]){
+                    for(int k=j;k>0;k--){
+                        nums[k]=nums[k-1];
+                    }
+                    nums[0]=queries[i];
+                    queries[i]=j;
+                    break;
+                }
+            }   
+        }
+        return queries;
+    }
+}
+
+class Solution {
+    public int[] processQueries(int[] queries, int m) {
+        int[] ans = new int[queries.length];
+        int k = 0;
+        LinkedList<Integer> perm = new LinkedList<>();
+        for (int i = 1; i <= m; i++)
+            perm.addLast(i);
+
+        for (int q : queries){
+            Iterator<Integer> it = perm.iterator();
+            int step = 0;
+            while (it.hasNext()){
+                Integer value = it.next();
+                if (value == q){
+                    ans[k++] = step;
+                    it.remove();
+                    perm.addFirst(value);
+                    break;
+                }                
+                step++;
+            }
+        }
+        return ans;
+    }
+} 
