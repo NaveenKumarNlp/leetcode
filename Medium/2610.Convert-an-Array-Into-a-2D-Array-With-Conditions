@@ -1,0 +1,36 @@
+class Solution {
+    public List<List<Integer>> findMatrix(int[] nums) {
+        List<List<Integer>> answer=new ArrayList<>();
+        HashSet<Integer> set=new HashSet<>();
+        while(true){
+            List<Integer> temp=new ArrayList<>();
+            for(int i=0;i<nums.length;i++){
+                if( nums[i]!=0 && set.add(nums[i])){
+                    temp.add(nums[i]);
+                    nums[i]=0;
+                }
+            }
+            if(temp.size()==0){
+                break;
+            }
+            answer.add(temp);
+            set.clear();
+        }
+        return answer;
+    }
+}
+
+class Solution {
+    
+    public List<List<Integer>> findMatrix(int[] nums) {
+        ArrayList<List<Integer>> answer=new ArrayList<>();
+        int []count=new int[nums.length+1];
+        for(int i=0;i<nums.length;i++){
+            if(answer.size() < ++count[nums[i]]){
+                answer.add(new ArrayList<>());
+            }
+            answer.get(count[nums[i]]-1).add(nums[i]);
+        }
+        return answer;
+    }
+}
