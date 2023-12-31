@@ -1,0 +1,27 @@
+class Solution {
+    public int[] findThePrefixCommonArray(int[] A, int[] B) {
+        HashSet<Integer> set=new HashSet<>();
+        int []answer=new int[A.length];
+        int sum=0;
+        for(int i=0;i<A.length;i++){
+            if(!set.add(A[i])){
+                sum++;
+            }
+            if(!set.add(B[i])){
+                sum++;
+            }
+            answer[i]=sum;
+        }
+        return answer;
+    }
+}
+
+    public int[] findThePrefixCommonArray(int[] A, int[] B) {
+        int cur = 0, n = A.length, res[] = new int[n], seen[] = new int[n + 1];
+        for (int i = 0; i < n; ++i) {
+            if (++seen[A[i]] == 2) cur++;
+            if (++seen[B[i]] == 2) cur++;
+            res[i] = cur;
+        }
+        return res;
+    }
