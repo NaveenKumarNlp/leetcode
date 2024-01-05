@@ -1,0 +1,16 @@
+class Solution {
+    public int lengthOfLIS(int[] nums) {
+        int[] temp = new int[nums.length];
+        Arrays.fill(temp,1);
+        int max = 1;
+        for (int i = nums.length-1; i>=0; i--) {
+            for (int j = i+1; j<nums.length; j++) {
+                if (nums[i] < nums[j]) {
+                    temp[i]=Math.max(temp[i],temp[j]+1);
+                    max=Math.max(temp[i],max);
+                }
+            }
+        }
+        return max;
+    }
+}
