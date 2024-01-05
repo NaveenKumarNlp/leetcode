@@ -18,3 +18,5 @@ class Solution {
         return minOp;
     }
 }
+
+or count = (freq+2)/3
