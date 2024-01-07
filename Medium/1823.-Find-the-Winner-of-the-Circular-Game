@@ -1,0 +1,28 @@
+class Solution {
+    public int findTheWinner(int n, int k) {
+        int ans = 0;
+        for(int i = 1; i <= n; i++)
+        {
+            ans = (ans + k) % i;       --> formula 
+        }
+        return ans + 1;
+    }
+}
+
+class Solution {
+    public int findTheWinner(int n, int k) {
+        LinkedList<Integer> list=new LinkedList<>();
+        for(int i=1;i<=n;i++){
+            list.add(i);
+        }
+        while(list.size()>1){
+            int index=0;
+            while(index<k-1){
+                list.add(list.remove(0));
+                index++;
+            }
+            list.remove(0);
+        }
+        return list.get(0);
+    }
+}
