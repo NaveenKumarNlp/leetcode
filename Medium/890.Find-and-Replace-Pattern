@@ -1,0 +1,53 @@
+class Solution {
+    public List<String> findAndReplacePattern(String[] words, String pattern) {
+        List<String> res = new ArrayList<>();
+        for (String word : words) {
+            if (check(word, pattern)) res.add(word);
+        }
+        return res;
+    }
+    
+    boolean check(String a, String b) {
+        for (int i = 0; i < a.length(); i++) {
+            if (a.indexOf(a.charAt(i)) != b.indexOf(b.charAt(i))) return false;
+        }
+        return true;
+    }
+}
+
+class Solution {
+    public List<String> findAndReplacePattern(String[] words, String pattern) {
+        String s1=pattern;
+        List<String> list=new ArrayList<>();
+        for(int j=0;j<words.length;j++){
+            String s2=words[j];
+            if(s1.length()==s2.length()){
+                Boolean flag=true;
+		        HashMap<Character,Character> map1=new HashMap<>();
+                HashMap<Character,Character> map2=new HashMap<>();
+		        for(int i=0;i<s2.length();i++){
+		            if(map1.containsKey(s1.charAt(i)) && map1.get(s1.charAt(i))!=s2.charAt(i)){
+                        flag=false;
+		                break;
+		            }
+		            if(map2.containsKey(s2.charAt(i)) && map2.get(s2.charAt(i))!=s1.charAt(i)){
+                        flag=false;
+		                break;
+		            }
+		            if(!map1.containsKey(s1.charAt(i))){
+		                map1.put(s1.charAt(i),s2.charAt(i));
+		            }
+		        
+		            if(!map2.containsKey(s2.charAt(i))){
+		                map2.put(s2.charAt(i),s1.charAt(i));
+		            }
+		        }
+                if(flag){
+                    list.add(s2);
+                }
+		    }
+        }
+        return list;
+    }
+}
+    
