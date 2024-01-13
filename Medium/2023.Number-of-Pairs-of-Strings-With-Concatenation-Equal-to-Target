@@ -1,0 +1,40 @@
+class Solution {
+    public int numOfPairs(String[] nums, String target) {
+        int count=0;
+        HashMap<String,Integer> map=new HashMap<>();
+        for(int i=0;i<nums.length;i++){
+            map.put(nums[i],map.getOrDefault(nums[i],0)+1);
+        }
+        int n=target.length();
+        String a="",b="";
+        for(int i=1;i<n;i++){
+            a=target.substring(0,i);
+            b=target.substring(i,n);
+            if(map.containsKey(a) && map.containsKey(b)){
+                if(a.equals(b)){
+                    count+=map.get(a)*(map.get(a)-1);
+                }else{
+                    count+=map.get(a)*map.get(b);
+                }
+            }
+        }
+        return count;
+    }
+}
+
+class Solution {
+    public int numOfPairs(String[] nums, String target) {
+        int count=0;
+        for(int i=0;i<nums.length-1;i++){
+            for(int j=i+1;j<nums.length;j++){
+                if((nums[i]+nums[j]).equals(target)){
+                    count++;
+                }
+                if((nums[j]+nums[i]).equals(target)){
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+}
