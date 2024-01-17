@@ -1,0 +1,46 @@
+class Solution {
+    public int equalPairs(int[][] grid) {
+        Map<String, Integer> cnt = new HashMap<>();
+        for (int[] row : grid) {
+            cnt.merge(Arrays.toString(row), 1, Integer::sum);
+        }
+        System.out.println(cnt);
+        int pairs = 0;
+        for (int c = 0, n = grid.length; c < n; ++c) {
+            int[] col = new int[n];
+            for (int r = 0; r < n; ++r) {
+                col[r] = grid[r][c];
+            }
+            pairs += cnt.getOrDefault(Arrays.toString(col), 0);
+        }
+        return pairs;
+    }
+}
+
+class Solution {
+    public int equalPairs(int[][] grid) {
+        StringBuilder []row=new StringBuilder[grid.length];
+        StringBuilder []col=new StringBuilder[grid.length];
+        for(int i=0;i<grid.length;i++){
+            row[i]=new StringBuilder();
+            for(int j=0;j<grid[0].length;j++){
+                if(i==0){
+                    col[j]=new StringBuilder();
+                }
+                row[i].append(String.valueOf(grid[i][j]));
+                row[i].append(" ");
+                col[j].append(String.valueOf(grid[i][j]));
+                col[j].append(" ");
+            }
+        }
+        int count=0;
+        for(int i=0;i<grid.length;i++){
+            for(int j=0;j<grid[0].length;j++){
+                if(row[i].toString().equals(col[j].toString())){
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+}
