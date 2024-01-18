@@ -1,0 +1,28 @@
+class Solution {
+    public int[][] generateMatrix(int n) {
+        int [][]mat=new int[n][n];
+        int start=0,end=n-1,value=1;
+        for(int i=0;i<(n+1)/2;i++){
+
+            for(int col=start;col<=end;col++){
+                mat[start][col]=value++;
+            }
+
+            for(int row=start+1;row<end;row++){
+                mat[row][end]=value++;
+            }
+
+            for(int col=end;col>=start;col--){
+                if(n*n>=value)
+                mat[end][col]=value++;
+            }
+
+            for(int row=end-1;row>start;row--){
+                mat[row][start]=value++;
+            }
+            start++;
+            end--;
+        }
+        return mat;
+    }
+}
