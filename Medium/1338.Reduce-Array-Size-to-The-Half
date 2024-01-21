@@ -1,0 +1,33 @@
+class Solution {
+    public int minSetSize(int[] arr) {
+        HashMap<Integer,Integer> map=new HashMap<>();
+        for(int i=0;i<arr.length;i++){
+            map.put(arr[i],map.getOrDefault(arr[i],0)+1);
+            if(map.get(arr[i])>=(arr.length+1)/2){
+                return 1;
+            }
+        }
+        if(map.size()==1){
+            return 1;
+        }
+        int []temp=new int[map.size()];
+        int i=0;
+        for(Map.Entry<Integer,Integer> entry:map.entrySet()){
+            temp[i]=entry.getValue();
+            i++;
+        }
+        Arrays.sort(temp);
+        int count=0;
+        int val=0;
+        for(int j=map.size()-1;j>=0;j--){
+            if(count<(arr.length+1)/2){
+                count+=temp[j];
+                val++;
+            }else{
+                break;
+            }
+        }
+        return val;
+
+    }
+}
