@@ -1,0 +1,42 @@
+class Solution {
+    public int longestSubarray(int[] nums) {
+        int k=1,j=0,max=0;
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]==0){
+                k--;
+            }
+            while(k<0){
+                if(nums[j]==0){
+                    k++;
+                }
+                j++;
+            }
+            max=Math.max(max,i-j);
+        }
+        return max;
+    }
+}
+
+class Solution {
+    public int longestSubarray(int[] nums) {
+        int ones=0,max=0,preones=0;
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]==1){
+                ones++;
+            }else{
+                if(preones+ones>max){
+                    max=preones+ones;
+                }
+                preones=ones;
+                ones=0;
+            }
+        }
+        if(preones+ones>max){
+            max=preones+ones;
+        }
+        if(max==nums.length){
+            max--;
+        }
+        return max;
+    }
+}
