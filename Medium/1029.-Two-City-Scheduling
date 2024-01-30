@@ -1,0 +1,61 @@
+class Solution {
+    public int twoCitySchedCost(int[][] costs) {
+        int sum=0,ac=0,bc=0,n=costs.length;
+
+        Arrays.sort(costs, (a, b) -> Integer.compare((a[0] - a[1]),(b[0] - b[1])));
+        same as a
+        Arrays.sort(costs, (a, b) -> (a[0] - a[1]) - (b[0] - b[1]));
+
+        for(int []a:costs){
+            System.out.println(Arrays.toString(a));
+        }
+        ------> input:  [[10,20],[30,200],[400,50],[30,20]]
+        ------> output:[30, 200],[10, 20],[30, 20],[400, 50]
+
+        Arrays.sort(costs, (a, b) -> Integer.compare(Math.abs(a[0] - a[1]), Math.abs(b[0] - b[1])));
+        for(int []a:costs){
+            System.out.println(Arrays.toString(a));
+        }
+
+        ----->output: [10, 20],[30, 20],[30, 200],[400, 50]
+
+        for(int i=n-1;i>=0;i--){
+            if(ac<n/2 && costs[i][0]<costs[i][1]){
+                sum+=costs[i][0];
+                ac++;
+            }else if(bc<n/2 && costs[i][0]>costs[i][1]){
+                sum+=costs[i][1];
+                bc++;
+            }else if(ac>=n/2 && costs[i][0]<costs[i][1]){
+                sum+=costs[i][1];
+                bc++;
+            }else if(bc>=n/2 && costs[i][0]>costs[i][1]){
+                sum+=costs[i][0];
+                ac++;
+            }else if(costs[i][0]==costs[i][1]){
+                if(ac<bc){
+                    ac++;
+                }else{
+                    bc++;
+                }
+                sum+=costs[i][0];
+            }
+        }
+        return sum;
+    }
+}
+
+
+class Solution {
+    public int twoCitySchedCost(int[][] costs) {
+        Arrays.sort(costs, (a, b) -> (a[0] - a[1]) - (b[0] - b[1]));
+        int price = 0;
+        for(int i = 0; i < costs.length / 2; i++){
+            price += costs[i][0];
+        }
+        for(int i = costs.length / 2; i < costs.length; i++){
+            price += costs[i][1];
+        }
+        return price;
+    }
+}
