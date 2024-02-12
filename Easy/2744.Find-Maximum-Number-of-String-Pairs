@@ -1,0 +1,28 @@
+class Solution {
+    public int maximumNumberOfStringPairs(String[] words) {
+        HashSet<String> set=new HashSet<>();
+        int count=0;
+        for(int i=0;i<words.length;i++){
+            StringBuilder sb=new StringBuilder();
+            sb.append(words[i]);
+            if(set.contains(sb.reverse().toString())){
+                count++;
+            }
+            set.add(words[i]);
+        }
+        return count;
+    }
+}
+class Solution {
+    public int maximumNumberOfStringPairs(String[] words) {
+        Map<String, Integer> map = new HashMap<>();
+        for (String s : words) {
+            String rev = new StringBuilder(s).reverse().toString();
+            if(map.containsKey(rev))    map.put(rev, map.get(rev)+1);
+            else    map.put(s,0);
+        }
+        int ans = 0;
+        for(int value : map.values())   ans += value;
+        return ans;
+    }
+}
