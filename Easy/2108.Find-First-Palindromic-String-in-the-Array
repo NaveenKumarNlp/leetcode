@@ -1,0 +1,31 @@
+class Solution {
+    public String firstPalindrome(String[] words) {
+        for(String str:words){
+            int left=0,right=str.length()-1;
+            boolean flag=true;
+            while(left<=right){
+                if(str.charAt(left)!=str.charAt(right)){
+                    flag=false;
+                    break;
+                }
+                left++;
+                right--;
+            }
+            if(flag){
+                return str;
+            }
+        }
+        return "";
+    }
+}
+public class Solution {
+    public static String firstPalindrome(String[] words) {
+        for (String word : words) {
+            StringBuilder reversed = new StringBuilder(word).reverse();
+            if (word.equals(reversed.toString())) {
+                return word;
+            }
+        }
+        return "";
+    }
+}
