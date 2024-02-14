@@ -1,0 +1,58 @@
+class Solution {
+    public String destCity(List<List<String>> paths) {
+        Set<String> cities = new HashSet<>(); 
+        for (List<String> path : paths) {
+            cities.add(path.get(0)); 
+        }
+        for (List<String> path : paths) {
+            String dest = path.get(1); 
+            if (!cities.contains(dest)) {
+                return dest; 
+            }
+        }
+        return "";
+    }
+}
+class Solution {
+    public String destCity(List<List<String>> paths) {
+        Set<String> sourceCities = new HashSet<>();
+        Set<String> destinationCities = new HashSet<>();
+        for (List<String> path : paths) {
+            sourceCities.add(path.get(0));
+            destinationCities.add(path.get(1));
+        }
+        for (String city : destinationCities) {
+            if (!sourceCities.contains(city)) {
+                return city;
+            }
+        }
+        return null;
+    }
+}
+
+class Solution {
+    LinkedList<String> list=new LinkedList<>();
+    public String destCity(List<List<String>> path) {
+        List<List<String>> list2=new LinkedList<>();
+        for(int i=0;i<path.size();i++){
+            if(list.size()==0){
+                list.add(path.get(i).get(0));
+                list.add(path.get(i).get(1));
+            }else if(list.indexOf(path.get(i).get(0))==0){
+                list.addFirst(path.get(i).get(1));
+            }else if(list.indexOf(path.get(i).get(0))==list.size()-1){
+                list.add(path.get(i).get(1));
+            }else if(list.indexOf(path.get(i).get(1))==0){
+                list.addFirst(path.get(i).get(0));
+            }else if(list.indexOf(path.get(i).get(1))==list.size()-1){
+                list.add(path.get(i).get(0));
+            }else {
+                list2.add(path.get(i));
+            }
+        }
+        if(list2.size()!=0){
+            destCity(list2);
+        }
+        return list.get(list.size()-1);
+    }
+}
