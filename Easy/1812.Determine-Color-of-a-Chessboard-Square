@@ -1,0 +1,28 @@
+class Solution {
+    public boolean squareIsWhite(String coordinates) {
+      
+        char ch = coordinates.charAt(0);
+        int n = coordinates.charAt(1) - 48;
+        
+        if(ch=='a' ||ch =='c' || ch =='e' || ch =='g' ){
+            return n%2==0;
+        }else {
+            return n%2==1;
+        } 
+    }
+}
+    public boolean squareIsWhite(String a) {
+        return a.charAt(0) % 2 != a.charAt(1) % 2;  
+    }
+
+class Solution {
+    public boolean squareIsWhite(String coordinates) {
+        if(((coordinates.charAt(0)-'a')%2==0 && (coordinates.charAt(1)-'0')%2!=0) ||
+           ((coordinates.charAt(0)-'a')%2!=0 && (coordinates.charAt(1)-'0')%2==0))
+        {
+            return false;
+        }else{
+            return true;
+        }
+    }
+}
