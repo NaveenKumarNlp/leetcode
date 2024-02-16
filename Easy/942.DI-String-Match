@@ -1,0 +1,15 @@
+class Solution {
+    public int[] diStringMatch(String s) {
+        int []answer=new int[s.length()+1];
+        int i=0,d=s.length();
+        for(int j=0;j<s.length();j++){
+            if(s.charAt(j)=='I'){
+                answer[j]=i++;
+            }else{
+                answer[j]=d--;
+            }
+        }
+        answer[s.length()]=d;
+        return answer;
+    }
+}
