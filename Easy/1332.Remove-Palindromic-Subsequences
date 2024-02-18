@@ -1,0 +1,19 @@
+class Solution {
+    public int removePalindromeSub(String s) {
+        if(s.equals(new StringBuilder(s).reverse().toString())){
+            return 1;
+        }else{
+            return 2;
+        }
+    }
+}
+//Good to Know
+//You need to know the difference between subarray and subsequence.
+//Subarray need to be consecutive。
+//Subsequence don't have to be consecutive.
+
+
+//Intuition
+//If it's empty sting, return 0;
+//If it's palindrome, return 1;
+//Otherwise, we need at least 2 operation.
