@@ -1,0 +1,24 @@
+class Solution {
+    public String sortString(String s) {
+        int []ch=new int[26];
+        for(int i=0;i<s.length();i++){
+            ch[s.charAt(i)-'a']++;
+        }
+        StringBuilder sb=new StringBuilder();
+        while(sb.length()<s.length()){
+            for(int i=0;i<26;i++){
+                if(ch[i]>0){
+                    sb.append((char)(i+'a'));
+                    ch[i]=ch[i]-1;
+                }
+            }
+            for(int i=25;i>=0;i--){
+                if(ch[i]>0){
+                    sb.append((char)(i+'a'));
+                    ch[i]=ch[i]-1;
+                }
+            }
+        }
+        return sb.toString();
+    }
+}
