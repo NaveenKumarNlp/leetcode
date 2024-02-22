@@ -1,0 +1,20 @@
+class Solution {
+    public int countGoodSubstrings(String s) {
+        char a=' ',b=' ',c=' ';
+        int count=0;
+        if(s.length()>=3){
+            a=s.charAt(0);
+            b=s.charAt(1);
+        }
+        for(int i=2;i<s.length();i++){
+            c=s.charAt(i);
+            if(a!=b && b!=c && c!=a){
+                count++;
+            }
+            a=b;
+            b=c;
+            
+        }
+        return count;
+    }
+}
