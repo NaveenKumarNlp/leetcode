@@ -1,0 +1,23 @@
+class Solution {
+    public int[] shortestToChar(String s, char c) {
+        int []answer=new int[s.length()];
+        int len=s.length()-1;
+        for(int i=0;i<s.length();i++){
+            if(s.charAt(i)==c){
+                answer[i]=0;
+                len=0;
+            }else{
+                answer[i]=++len;
+            }
+        }
+        len=s.length()-1;
+        for(int i=s.length()-1;i>=0;i--){
+            if(s.charAt(i)==c){
+                len=0;
+            }else{
+                answer[i]=Math.min(answer[i],++len);
+            }
+        }
+        return answer;
+    }
+}
