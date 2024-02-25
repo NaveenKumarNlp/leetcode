@@ -1,0 +1,21 @@
+class Solution {
+    public int countWords(String[] words1, String[] words2) {
+        Map<String,Integer> map=new HashMap<>();
+        for(String word:words1){
+            map.put(word,map.getOrDefault(word,0)+1);
+        }
+        for(String s:words2){
+            Integer count=map.get(s);
+            if(count !=null && count<=1){
+                map.put(s,count-1);
+            }
+        }
+        int once=0;
+        for(int k:map.values()){
+            if(k==0){
+                once++;
+            }
+        }
+        return once;
+    }
+}
