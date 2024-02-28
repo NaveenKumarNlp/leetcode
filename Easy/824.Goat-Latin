@@ -1,0 +1,49 @@
+class Solution {
+    public String toGoatLatin(String sentence) {
+        String[] str=sentence.split(" ");
+        StringBuilder ans=new StringBuilder();
+        StringBuilder x=new StringBuilder();
+        for(int i=0;i<str.length;i++){
+            x.append("a");
+            if(isVowel(str[i])){
+                ans.append(str[i]);
+            }else{
+                ans.append(str[i].substring(1));
+                ans.append(str[i].charAt(0));
+            }
+            ans.append("ma");
+            ans.append(x);
+            if(i<str.length-1) ans.append(" ");
+        }
+        return ans.toString();
+    }
+    public boolean isVowel(String s){
+        char ch=s.charAt(0);
+        if(ch=='a' || ch=='e' || ch=='i' || ch=='o' || ch=='u' || ch=='A' || ch=='E' || ch=='I' || ch=='O' || ch=='U') return true;
+        return false;
+    }
+}
+/*class Solution {
+    public String toGoatLatin(String sentence) {
+        StringBuilder sb=new StringBuilder();
+        String s="a";
+        String vowel="aeiouAEIOU";
+        int pre=0;
+        for(int i=0;i<sentence.length();i++){
+            if(sentence.charAt(i)==' ' || i==sentence.length()-1){
+                int end=(i==sentence.length()-1)?i+1:i;
+                if(vowel.indexOf(sentence.charAt(pre))!=-1){
+                    sb.append(sentence.substring(pre,end)+"ma"+s);
+                }else{
+                    sb.append(sentence.substring(pre+1,end)+sentence.charAt(pre)+"ma"+s);
+                }
+                if(i!=sentence.length()-1){
+                    sb.append(" ");
+                }
+                s=s+"a";
+                pre=i+1;
+            }
+        }
+        return sb.toString();
+    }
+}*/
