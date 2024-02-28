@@ -1,0 +1,62 @@
+class Solution {
+   public List<String> commonChars(String[] A) {
+        int[] last = count(A[0]);
+        for (int i = 1; i < A.length; i++) {
+            last = intersection(last, count(A[i]));
+        }
+        List<String> arr = new ArrayList<>();
+        for (int i = 0; i < 26; i++) {
+            if (last[i] != 0) {
+                char a = 'a';
+                a += i;
+                String s = String.valueOf(a);
+                while (last[i] > 0) {
+                    arr.add(s);
+                    last[i]--;
+                }
+            }
+        }
+        return arr;
+    }
+    int[] intersection(int[] a, int[] b) {
+        int[] t = new int[26];
+        for (int i = 0; i < 26; i++) {
+            t[i] = Math.min(a[i], b[i]);
+        }
+        return t;
+    }
+    int[] count(String str) {
+        int[] t = new int[26];
+        for (char c : str.toCharArray()) t[c - 'a']++;
+        return t;
+    }
+}
+
+class Solution {
+    public List<String> commonChars(String[] words) {
+        HashMap<Character,int[]> map=new HashMap<>();
+        for(int i=0;i<words.length;i++){
+            for(int j=0;j<words[i].length();j++){
+                if(!map.containsKey(words[i].charAt(j))){
+                    map.put(words[i].charAt(j),new int[words.length]);
+                }
+                map.get(words[i].charAt(j))[i]+=1;
+            }
+        }
+        List<String> list=new ArrayList<>();
+        for(Map.Entry<Character,int[]> entry:map.entrySet()){
+            int min=Integer.MAX_VALUE;
+            for(int i=0;i<words.length;i++){
+                if(min>entry.getValue()[i]){
+                    min=entry.getValue()[i];
+                }
+            }
+            if(min!=0){
+                for(int j=0;j<min;j++){
+                    list.add(""+entry.getKey());
+                }
+            }
+        }
+        return list;
+    }
+}
