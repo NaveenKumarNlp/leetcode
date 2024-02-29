@@ -1,0 +1,39 @@
+class Solution {
+    public String processString(String email)
+    {        char[] cArr = email.toCharArray();
+        int read =0, write =0, length = cArr.length;
+
+        while(cArr[read] != '@')
+        {
+            if(cArr[read] == '+')
+            {
+                while(cArr[read] != '@')
+                {
+                    read++;
+                }
+                break; // done processing local name
+            }
+            //process local name
+            else if(cArr[read] != '.')
+            {
+                cArr[write++] = cArr[read];
+            }
+            
+            read++;
+        }
+        while(read < length) 
+        {
+            //process domain name
+            cArr[write++] = cArr[read++];
+        }
+        return String.valueOf(cArr,0,write);
+    }
+    public int numUniqueEmails(String[] emails) {
+        Set<String> validEmails = new HashSet<>();
+        for(String email : emails)
+        {
+            validEmails.add(processString(email));
+        }
+        return validEmails.size();
+    }
+}
