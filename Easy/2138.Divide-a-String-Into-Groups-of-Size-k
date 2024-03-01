@@ -1,0 +1,24 @@
+class Solution {
+    public String[] divideString(String s, int k, char fill) {
+        List<String> list=new ArrayList<>();
+        int i=0;
+        while(i<s.length()){
+            if(i+k<=s.length()){
+                list.add(s.substring(i,i+k));
+            }else{
+                StringBuilder sb=new StringBuilder();
+                sb.append(s.substring(i,s.length()));
+                for(int j=s.length();j<i+k;j++){
+                    sb.append(fill);
+                }
+                list.add(sb.toString());
+            }
+            i=i+k;
+        }
+        String []str=new String[list.size()];
+        for(i=0;i<list.size();i++){
+            str[i]=list.get(i);
+        }
+        return str;
+    }
+}
