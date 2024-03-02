@@ -1,0 +1,20 @@
+The number of valid substrings that can be made from two groups of size M and N is equal to the minimum value between M and N. 
+For example, 00011 can make two valid substrings, 0011 and 01. 
+Each group is defined as a repeating contiguous sequence of the same character. 
+For example in 01001110 we have the groups: 0, 1, 00, 111, and 0. We only compare groups who are neighbors (directly next to each other).
+class Solution {
+    public int countBinarySubstrings(String s) {
+        int count=1,pre=0,sum=0;
+        for(int i=1;i<s.length();i++){
+            if( s.charAt(i)==s.charAt(i-1)){
+                count++;
+            }else{
+                sum+=Math.min(pre,count);
+                pre=count;
+                count=1;
+            }
+        }
+        sum+=Math.min(pre,count);
+        return sum;
+    }
+}
