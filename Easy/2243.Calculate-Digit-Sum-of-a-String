@@ -1,0 +1,43 @@
+class Solution {
+    public String digitSum(String s, int k) {
+        StringBuilder sb=new StringBuilder();
+        int sum=0,temp=k;
+        if(s.length()<=k){
+            return s;
+        }
+        for(int i=0;i<s.length();i++){
+            if(i<=k-1){
+                sum+=s.charAt(i)-'0';
+                if(i==k-1 || i==s.length()-1){
+                    sb.append(sum);
+                    k+=temp;
+                    sum=0;
+                }
+            }
+        }
+        return digitSum(sb.toString(),temp);
+    }
+}
+
+class Solution {
+    public String digitSum(String s, int k) {
+        while(s.length()>k){
+    	   StringBuilder sb=new StringBuilder();
+            for(int i=0;i<s.length() ;i=i+k){
+                String str;
+                if(i+k>s.length()){
+                    str=s.substring(i,s.length());
+                }else{
+                    str=s.substring(i,i+k);
+                }
+                int sum=0;
+                for(int l=0;l<str.length();l++){ // to find the character sum of string 
+                    sum+=str.charAt(l)-'0';
+                }
+                sb.append(sum);
+            }
+            s=sb.toString();
+        }
+        return s;  
+    }
+}
