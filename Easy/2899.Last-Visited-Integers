@@ -1,0 +1,22 @@
+class Solution {
+    public List<Integer> lastVisitedIntegers(int[] nums) {
+        int pos=0,neg=0;
+        List<Integer> list=new ArrayList<>();
+        List<Integer> l=new ArrayList<>();
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]>0){
+                neg=0;
+                pos++;
+                l.add(nums[i]);
+            }else{
+                neg++;
+                if(pos<neg){
+                    list.add(-1);
+                }else{
+                    list.add(l.get(pos-neg));
+                }
+            }
+        }
+        return list;
+    }
+}
