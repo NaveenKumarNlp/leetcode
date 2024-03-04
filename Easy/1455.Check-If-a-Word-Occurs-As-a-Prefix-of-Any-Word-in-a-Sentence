@@ -1,0 +1,45 @@
+class Solution {
+    public int isPrefixOfWord(String sentence, String searchWord) {
+        int word=1,j=0;
+        for(int i=0;i<sentence.length();i++){
+            if(sentence.charAt(i)==' '){
+                word++;
+            }
+            if(sentence.charAt(i)==searchWord.charAt(j)){
+                j++;
+                if(j==searchWord.length()){
+                    if(i-j==-1 || sentence.charAt(i-j)==' '){
+                        return word; 
+                    }
+                    j=0;
+                }
+            }else{
+                j=0;
+            }
+        }
+        return -1;
+    }
+}
+
+class Solution {
+    public int isPrefixOfWord(String sentence, String searchWord) {
+        int word=1,letterCount=0,index=0,indexCount=0;
+        for(int i=0;i<sentence.length();i++){
+            if(sentence.charAt(i)==' '){
+                word++;
+                indexCount=i;
+            }else if(sentence.charAt(i)==searchWord.charAt(index) ){
+                letterCount++;
+                index++;
+                if(letterCount==searchWord.length()){
+                    letterCount=index=0;
+                    if((indexCount==0 && i-searchWord.length()==-1) || (indexCount!=0 && indexCount==i-searchWord.length())){
+                       return word; 
+                    }
+                }
+            }
+            
+        }
+        return -1;
+    }
+}
