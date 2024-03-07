@@ -1,0 +1,26 @@
+class Solution {
+    public int titleToNumber(String columnTitle) {
+        int sum=0;
+        for(int i=0;i<columnTitle.length();i++){
+            sum*=26;
+            sum+=columnTitle.charAt(i)-'A'+1;
+           
+        }
+        return sum;
+    }
+}
+class Solution {
+    public boolean checkAlmostEquivalent(String word1, String word2) {
+        int []ch=new int[26];
+        for(int i=0;i<word1.length();i++){
+            ch[word1.charAt(i)-'a']++;
+            ch[word2.charAt(i)-'a']--;
+        }
+        for(int i=0;i<26;i++){
+            if(Math.abs(ch[i])>3){
+                return false;
+            }
+        }
+        return true;
+    }
+}
