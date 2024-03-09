@@ -1,0 +1,33 @@
+class Solution {
+    public String makeGood(String s) {
+        char []ch=new char[s.length()];
+        int index=0;
+        for(int i=0;i<s.length();i++){
+            if(index == 0 ){
+                ch[index++]=s.charAt(i);
+            }else if(i>0 && (ch[index-1]==s.charAt(i)+32 || ch[index-1]==s.charAt(i)-32)){
+                index--;
+            }else if(i>0 && (ch[index-1]!=s.charAt(i)+32 || ch[index-1]!=s.charAt(i)-32)){
+                ch[index++]=s.charAt(i);
+            }
+        }
+        return String.valueOf(ch,0,index);
+    }
+}
+public String makeGood(String s) {
+        int n = s.length();
+        Stack<Character> stack = new Stack<>();
+        for(int i=0; i<n; i++){
+            if(!stack.empty() && (Math.abs(stack.peek()-s.charAt(i)) == 32)){
+                  stack.pop();
+            }
+            else{
+                stack.push(s.charAt(i));
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        while(!stack.empty()){
+            sb.append(String.valueOf(stack.pop()));
+        }
+        return sb.reverse().toString();
+    }
