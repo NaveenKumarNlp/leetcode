@@ -1,0 +1,22 @@
+class Solution {
+    public boolean checkZeroOnes(String s) {
+        int mone=0,mzero=0,one=0,zero=0;
+        for(int i=0;i<s.length();i++){
+            if(s.charAt(i)=='1'){
+                one++;
+                zero=0;
+                if(one>mone){
+                    mone=one;
+                }
+            }else{
+                zero++;
+                one=0;
+                if(zero>mzero){
+                    mzero=zero;
+                }
+            }
+            
+        }
+        return mone>mzero;
+    }
+}
