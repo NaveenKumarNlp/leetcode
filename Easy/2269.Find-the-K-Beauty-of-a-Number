@@ -1,0 +1,17 @@
+class Solution {
+    public int divisorSubstrings(int num, int k) {
+        int digit=10;
+        for(int i=1;i<k;i++){
+            digit*=10;
+        }
+        int temp=num,count=0;
+        while(temp>=(digit/10)){
+            int div=temp%digit;
+            if(div!=0 && num%div==0){
+                count++;
+            }
+            temp/=10;
+        }
+        return count;
+    }
+}
