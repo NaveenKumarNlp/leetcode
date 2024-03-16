@@ -1,0 +1,70 @@
+class Solution {
+    public String shortestCompletingWord(String licensePlate, String[] words) {
+        String result = null;
+		int minLen = Integer.MAX_VALUE;
+		licensePlate = licensePlate.toLowerCase();
+		int[] countArr = new int[26];
+		for (char c : licensePlate.toCharArray()) {
+			if (Character.isLetter(c)) {
+				countArr[c - 'a']++;
+			}
+		}
+		for (String word : words) {
+			if (minLen <= word.length()) {
+				continue;
+			}
+			if (isValid(word, countArr)) {
+				result = word;
+				minLen = word.length();
+			}
+		}
+		return result;
+    }
+
+    private boolean isValid(String word, int[] countArr) {
+		int[] wordArr = new int[26];
+		for (char c : word.toCharArray()) {
+			wordArr[c - 'a']++;
+		}
+		for (int i = 0; i < 26; i++) {
+			if (wordArr[i] < countArr[i]) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+}
+class Solution {
+    public String shortestCompletingWord(String licensePlate, String[] words) {
+        int []str=new int[26];
+        HashSet<Integer> set=new HashSet<>();
+        for(int i=0;i<licensePlate.length();i++){
+            char ch=licensePlate.charAt(i);
+            if(ch>='a' && ch<='z'){
+                str[ch-'a']++;
+                set.add(ch-'a');
+            }else if(ch>='A' && ch<='Z'){
+                str[ch-'A']++;
+                set.add(ch-'A');
+            }
+        }
+        String  res="";
+        for(String word:words){
+            int []w=new int[26];
+            int count=0;
+            for(int i=0;i<word.length();i++){
+                if(str[word.charAt(i)-'a']>w[word.charAt(i)-'a']){
+                    w[word.charAt(i)-'a']++;
+                    if(str[word.charAt(i)-'a']==w[word.charAt(i)-'a']){
+                        count++;
+                    }
+                }
+            }
+            if(count==set.size() && (res.length()>word.length() || res.equals(""))){
+                res=word;
+            }
+        }
+        return res;
+    }
+}
