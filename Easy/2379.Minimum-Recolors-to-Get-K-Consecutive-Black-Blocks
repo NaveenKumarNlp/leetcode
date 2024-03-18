@@ -1,0 +1,17 @@
+class Solution {
+    public int minimumRecolors(String blocks, int k) {
+        int b=0,mb=k;
+        for(int i=0;i<blocks.length();i++){
+            if(blocks.charAt(i)=='B'){
+                b++;
+            }
+            if(i>=k-1){
+                mb=Math.min(mb,k-b);
+                if(blocks.charAt(i-k+1)=='B'){
+                    b--;
+                }
+            }
+        }
+        return mb;
+    }
+}
