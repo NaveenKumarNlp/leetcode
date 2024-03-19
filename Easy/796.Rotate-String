@@ -1,0 +1,33 @@
+class Solution {
+    public boolean rotateString(String s, String goal) {
+        if(s.length()!=goal.length()){
+            return false;
+        }
+        s=s+s;
+
+        if(s.contains(goal)){
+            return true;
+        }
+        return false;
+    }
+}
+
+class Solution {
+    public boolean rotateString(String s, String goal) {
+        int len=s.length();
+        while(len>0){
+            char []ch=s.toCharArray();
+            char c=ch[0];
+            for(int i=1;i<s.length();i++){
+                ch[i-1]=ch[i];
+            }
+            ch[s.length()-1]=c;
+            s=new String(ch);
+            if(s.equals(goal)){
+                return true;
+            }
+            len--;
+        }
+        return false;
+    }
+}
