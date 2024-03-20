@@ -1,0 +1,31 @@
+class Solution {
+    public String makeFancyString(String s) {
+        char prev = s.charAt (0);
+        int freq = 1;
+        StringBuilder res = new StringBuilder ();
+        res.append (s.charAt (0));
+        for (int i = 1; i < s.length (); i++) {
+            if (s.charAt (i) == prev)
+                freq++;
+            else {
+                prev = s.charAt (i);
+                freq = 1;
+            }
+            if (freq < 3)
+                res.append (s.charAt (i));
+        }
+        return res.toString ();
+    }
+}
+class Solution {
+    public String makeFancyString(String s) {
+        char []ch=new char[s.length()];
+        int index=0;
+        for(int i=0;i<s.length();i++){
+            if(index<2 || !(s.charAt(i)==ch[index-1] && ch[index-2]==ch[index-1])){
+                ch[index++]=s.charAt(i);
+            }
+        }
+        return new String(ch,0,index);
+    }
+}
