@@ -1,0 +1,15 @@
+class Solution {
+    public boolean detectCapitalUse(String word) {
+        int cap=0,ind=-1;
+        for(int i=0;i<word.length();i++){
+            if(word.charAt(i)>='A' && word.charAt(i)<='Z'){
+                cap++;
+                ind=i;
+            }
+        }
+        if(cap==word.length() || cap==0 || (cap==1 && ind==0)){
+            return true;
+        }
+        return false;
+    }
+}
