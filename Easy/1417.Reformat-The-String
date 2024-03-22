@@ -1,0 +1,83 @@
+class Solution {
+    public String reformat(String s) {
+        char [] c = s.toCharArray();
+        
+        int digits = 0;
+        int letter = 0;
+
+        for(int i = 0; i < c.length; i++) {
+            if(c[i] >= '0' && c[i] <= '9') {
+                ++digits;
+            }
+            else {
+                ++letter;
+            }
+        }
+
+        if(digits != letter && digits + 1 != letter && letter + 1 != digits) {
+            return "";
+        }
+
+        char [] ans = new char[c.length];
+
+        if(digits > letter) {
+            digits = 0;
+            letter = 1;
+        }
+        
+        else {
+            digits = 1;
+            letter = 0;
+        }
+        
+        for(int i = 0; i < c.length; i++) {
+            if(c[i] >='0' && c[i] <= '9') {
+                ans[digits] = c[i];
+                digits += 2;
+            }
+            else {
+                ans[letter] = c[i];
+                letter += 2;
+            }
+        }
+        return new String(ans);
+    }
+}
+
+class Solution {
+    public String reformat(String s) {
+        List<Character> a=new ArrayList<>();
+        List<Character> d=new ArrayList<>();
+        for(char c:s.toCharArray()){
+            if(c>='a' && c<='z'){
+                a.add(c);
+            }else{
+                d.add(c);
+            }
+        }
+        int l1=a.size(),l2=d.size();
+        StringBuilder sb=new StringBuilder();
+        if(l1-l2!=0 && l1-l2!=1 && l1-l2!=-1){
+            return "";
+        }else if(l1>l2 || l1==l2){
+            int i=0;
+            while(i<l1 && i<l2) {
+                sb.append(a.get(i));
+                sb.append(d.get(i));
+                i++;
+            }
+            if(l1!=l2){
+                sb.append(a.get(i));
+            }
+        }else{
+            int i=0;
+            while(i<l1 && i<l2) {
+                sb.append(d.get(i));
+                sb.append(a.get(i));
+                i++;
+            }
+            sb.append(d.get(i));
+        }
+        return sb.toString();
+    }
+}
