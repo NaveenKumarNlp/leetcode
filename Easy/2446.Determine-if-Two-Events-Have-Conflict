@@ -1,0 +1,34 @@
+class Solution {
+    public boolean haveConflict(String[] event1, String[] event2) {
+        
+        int event1StartTime = timeInMinutes(event1[0]);
+        int event1EndTime = timeInMinutes(event1[1]);
+
+        int event2StartTime = timeInMinutes(event2[0]);
+        int event2EndTime = timeInMinutes(event2[1]);
+
+/*Given 2 segment [left1, right1], [left2, right2],
+how can we check whether they overlap?
+If these two intervals overlap, it should exist a value x,
+left1 <= x <= right1 && left2 <= x <= right2
+so that
+max(left1, left2) <= x <= min(right1, right 2)
+so that
+left1 <= right2 && left2 <= right1
+
+These two are the sufficient and necessary conditions,
+for two interval overlaps.*/
+
+        if (event1StartTime <= event2EndTime && event2StartTime <= event1EndTime) {
+            return true;
+        }
+        return false;
+        
+    }
+
+    public int timeInMinutes(String str) {
+        int hour = Integer.parseInt(str.substring(0, 2));
+        int minutes = Integer.parseInt(str.substring(3));
+        return hour * 60 + minutes;
+    }
+}
