@@ -1,0 +1,20 @@
+class Solution {
+    public String addBinary(String a, String b) {
+        int bal=0,l1=a.length()-1,l2=b.length()-1;
+        StringBuilder sb=new StringBuilder();
+        while(l1>=0 || l2>=0){
+            int sum=bal;
+            if(l1>=0){
+                sum+=a.charAt(l1--)-'0';
+            }if(l2>=0){
+                sum+=b.charAt(l2--)-'0';
+            }
+            sb.append(sum % 2);
+            bal = sum / 2;
+        }
+        if(bal==1){
+            sb.append(bal);
+        }
+        return sb.reverse().toString();
+    }
+}
