@@ -1,0 +1,30 @@
+class Solution {
+    public boolean isSubsequence(String s, String t) {
+        int j=0;
+        for(int i=0;i<t.length() && j<s.length();i++){
+            if(s.charAt(j)==t.charAt(i)){
+                j++;
+            }
+        }
+        if(j==s.length()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+}
+class Solution {
+    public boolean isSubsequence(String s, String t) {
+        char[] sArray = s.toCharArray();
+        char[] tArray = t.toCharArray();
+        int sPoint = 0;
+        int tPoint = 0;
+        while (tPoint < tArray.length && sPoint < sArray.length) {
+            if (sArray[sPoint] == tArray[tPoint]) {
+                sPoint++;
+            }
+            tPoint++;
+        }
+        return sPoint == sArray.length;
+    }
+}
