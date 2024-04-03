@@ -1,0 +1,56 @@
+//TC - O(NlogN)
+//SC - O(N)
+class Solution {
+    public String sortVowels(String s) {
+        int n = s.length();
+        ArrayList<Character> vow = new ArrayList<>();
+        ArrayList<Integer> pos = new ArrayList<>();
+        
+        for (int i = 0; i < n; i++) {
+            char ch = s.charAt(i);
+            if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' || ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U') { // condition to check for vowel
+                vow.add(ch);
+                pos.add(i); // storing positions of vowel
+            }
+        }
+        
+        Collections.sort(vow);
+        
+        char[] answer = s.toCharArray();
+        for (int i = 0; i < pos.size(); i++) {
+            answer[pos.get(i)] = vow.get(i);
+        }
+        
+        return new String(answer);
+    }
+}
+
+//TC - O(N)
+//SC - O(N)
+
+class Solution {
+    public String sortVowels(String s) {
+        char []ch=s.toCharArray();
+        int []temp=new int[122];
+        for(int i=0;i<s.length();i++){
+            if(ch[i]=='a' || ch[i]=='e'  ||ch[i]=='i' || ch[i]=='o' || ch[i]=='u' || ch[i]=='A' || ch[i]=='E' || ch[i]=='I' || ch[i]=='O' || ch[i]=='U'){
+                temp[ch[i]]++;
+            }
+        }
+        int j=0;
+        for(int i=0;i<ch.length;i++){
+
+
+            if(ch[i]=='a' || ch[i]=='e'  ||ch[i]=='i' || ch[i]=='o' || ch[i]=='u' || ch[i]=='A' || ch[i]=='E' || ch[i]=='I' || ch[i]=='O' || ch[i]=='U'){
+
+                while(j<temp.length && temp[j]==0){
+                    j++;
+                }
+                ch[i]=(char)j;
+                temp[j]--;
+            }
+        }
+        return new String(ch);
+    }
+}
+
