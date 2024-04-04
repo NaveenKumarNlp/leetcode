@@ -1,0 +1,23 @@
+class Solution {
+    public String removeOccurrences(String s, String part) {
+        char []ch=new char[s.length()];
+        int index=0,pt=0;
+        for(int i=0;i<s.length();i++){
+            ch[index++]=s.charAt(i);
+            if(index>=part.length()){
+                int last=index-1;
+                for(int j=part.length()-1;j>=0;j--,last--){
+                    if(ch[last]!=part.charAt(j)){
+                        break;
+                    }
+                }
+                if(last+part.length()+1==index){
+                    index=last+1;
+                }
+            }
+           
+
+        }
+        return String.valueOf(ch,0,index);
+    }
+}
