@@ -1,0 +1,24 @@
+class Solution {
+    public List<String> subdomainVisits(String[] cpdomains) {
+        HashMap<String,Integer> map=new HashMap<>();
+        for(String s:cpdomains){
+            int space=-1;
+            int val=0;
+            for(int i=0;i<s.length();i++){
+                if(s.charAt(i)==' '){
+                    val=Integer.valueOf(s.substring(0,i)); 
+                }
+                if(s.charAt(i)==' ' || s.charAt(i)=='.'){
+                    space=i+1;
+                    String str=s.substring(space,s.length());
+                    map.put(str,map.getOrDefault(str,0)+val);
+                }
+            }
+        }
+        ArrayList<String> list=new ArrayList<>();
+        for(Map.Entry<String,Integer> entry:map.entrySet()){
+            list.add(entry.getValue()+" "+entry.getKey());
+        }
+        return list;
+    }
+}
