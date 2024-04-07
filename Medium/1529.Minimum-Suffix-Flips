@@ -1,0 +1,13 @@
+class Solution {
+    public int minFlips(String target) {
+        int flips = 0;
+        char prev = '0';
+        for (char bit : target.toCharArray()) {
+            if (bit != prev) {
+                flips++;
+                prev = bit;
+            }
+        }
+        return flips;
+    }
+}
