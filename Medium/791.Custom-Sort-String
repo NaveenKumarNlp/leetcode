@@ -1,0 +1,26 @@
+class Solution {
+    public String customSortString(String order, String s) {
+        int []temp=new int[26];
+        for(int i=0;i<s.length();i++){
+            temp[s.charAt(i)-'a']++;
+        }
+        StringBuilder sb=new StringBuilder();
+        for(int i=0;i<order.length();i++){
+            if(temp[order.charAt(i)-'a']>0){
+                while(temp[order.charAt(i)-'a']>0){
+                    sb.append(order.charAt(i));
+                    temp[order.charAt(i)-'a']--;
+                }
+            }
+        }
+        for(int i=0;i<26;i++){
+            if(temp[i]>0){
+                while(temp[i]>0){
+                    sb.append((char)('a' + i));
+                    temp[i]--;
+                }
+            }
+        }
+        return sb.toString();
+    }
+}
