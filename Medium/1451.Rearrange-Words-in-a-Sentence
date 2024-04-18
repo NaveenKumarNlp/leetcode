@@ -1,0 +1,41 @@
+class Solution {
+    public String arrangeWords(String text) {
+        String []s=text.toLowerCase().split(" ");
+        int maxLen=0;
+        for(String str:s){
+            maxLen=Math.max(maxLen,str.length());
+        }
+        ArrayList<String>[] bucket=new ArrayList[maxLen+1];
+        for(String str:s){
+            if(bucket[str.length()]==null){
+                bucket[str.length()]=new ArrayList<>();
+            }
+            bucket[str.length()].add(str);
+        }
+        StringBuilder sb=new StringBuilder();
+        Boolean first=true;
+        for(ArrayList<String> list:bucket){
+            if(list==null){
+                continue;
+            }
+            for(String str:list){
+                if(first){
+                    str=(char)(str.charAt(0)-32)+str.substring(1);
+                    sb.append(str);
+                    first=false;
+                }else{
+                    sb.append(" ");
+                    sb.append(str);
+                }
+            }
+        }
+        return sb.toString();
+    }
+}
+
+public String arrangeWords(String text) {
+        String []s = text.toLowerCase().split(" ");
+        Arrays.sort(s, (a,b) ->  a.length() - b.length());
+        String ans = String.join(" ", s);
+        return Character.toUpperCase(ans.charAt(0)) + ans.substring(1);
+    }
