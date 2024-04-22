@@ -1,0 +1,22 @@
+class Solution {
+    public int minDeletions(String s) {
+        int[] counts = new int[26];
+        char[] chars = s.toCharArray();
+        for (char c : chars) {
+            counts[c - 'a']++;
+        }
+        int res = 0;
+        List<Integer> usedCount = new ArrayList<>();
+        for (int count : counts) {
+            if (count > 0) {
+                int unusedCount = count;
+                while (usedCount.contains(unusedCount) && unusedCount > 0) {
+                    unusedCount--;
+                    res++;
+                }
+                usedCount.add(unusedCount);
+            }
+        }
+        return res;
+    }
+}
