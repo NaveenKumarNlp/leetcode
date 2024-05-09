@@ -1,0 +1,55 @@
+class Solution {
+    public boolean isRobotBounded(String instructions) {
+        int x=0,y=0;
+        boolean north=true,south=false,east=false,west=false;
+        for(int i=0;i<instructions.length();i++){
+            char c=instructions.charAt(i);
+            if(c=='G'){
+                if(north){
+                    y++;
+                }else if(south){
+                    y--;
+                }else if(east){
+                    x++;
+                    }else{
+                        x--;
+                    }
+                }else{
+                    if(north){
+                        if(c=='L'){
+                            west=true;
+                        }else{
+                            east=true;
+                        }
+                        north=false;
+                    }else if(south){
+                        if(c=='L'){
+                            east=true;
+                        }else{
+                            west=true;
+                        }
+                        south=false;
+                    }else if(east){
+                        if(c=='L'){
+                            north=true;
+                        }else{
+                            south=true;
+                        }
+                        east=false;
+                    }else{
+                        if(c=='L'){
+                            south=true;
+                        }else{
+                            north=true;
+                        }
+                        west=false;
+                    }
+                }
+            }
+            if(x==0 && y==0 || north==false){
+                return true;
+            }else{
+                return false;
+            }
+    }
+}
