@@ -1,0 +1,29 @@
+class Solution {
+    public boolean closeStrings(String word1, String word2) {
+        if(word1.length()!=word2.length())
+            return false;
+        if(word1.equals(word2))
+            return true;
+
+        char[] w1Arr = new char[26];
+        char[] w2Arr = new char[26];    
+
+        for(char ch : word1.toCharArray()){
+            w1Arr[ch-'a']++;
+        }
+
+        for(char ch : word2.toCharArray()){
+            w2Arr[ch-'a']++;
+        }
+
+        for(int i=0;i<26;i++){
+            if((w1Arr[i]==0 && w2Arr[i]>0) ||
+                (w2Arr[i]==0 && w1Arr[i]>0))
+                return false;
+        }
+
+        Arrays.sort(w1Arr);
+        Arrays.sort(w2Arr);
+        return Arrays.equals(w1Arr,w2Arr);
+    }
+}
