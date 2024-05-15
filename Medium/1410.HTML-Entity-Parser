@@ -1,0 +1,41 @@
+class Solution {
+    public String entityParser(String s) {
+        HashMap<String,String> map=new HashMap<>();
+        map.put("quot","\"");
+        map.put("apos","\'");
+        map.put("amp","&");
+        map.put("gt",">");
+        map.put("lt","<");
+        map.put("frasl","/");
+        StringBuilder sb=new StringBuilder();
+        
+        for(int i=0;i<s.length();i++){
+            if(s.charAt(i)=='&'){
+                StringBuilder temp=new StringBuilder();
+                while(i<s.length() && s.charAt(i)!=';'){
+                    temp.append(s.charAt(i));
+                    if(s.charAt(i)=='&'){
+                        sb.append(temp.toString());
+                        temp=new StringBuilder();
+                    }
+                    i++;
+                }
+                String str=temp.toString();
+                if(i==s.length() && s.charAt(i-1)!=';'){
+                    sb.append(str);
+                }else{
+                    if(map.containsKey(str)){
+                        sb.deleteCharAt(sb.length()-1);
+                        sb.append(map.get(str));
+                    }else{
+                        sb.append(str);
+                        sb.append(';');
+                    }
+                }
+            }else{
+                sb.append(s.charAt(i));
+            }
+        }
+        return sb.toString();
+    }
+}
