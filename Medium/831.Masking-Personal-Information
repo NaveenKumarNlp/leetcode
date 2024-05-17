@@ -1,0 +1,76 @@
+    String[] country = {"", "+*-", "+**-", "+***-"};
+    public String maskPII(String S) {
+        int at = S.indexOf("@");
+        if (at > 0) {
+            S = S.toLowerCase();
+            return (S.charAt(0) + "*****" + S.substring(at - 1)).toLowerCase();
+        }
+        S = S.replaceAll("[^0-9]", "");
+        return country[S.length() - 10] + "***-***-" + S.substring(S.length() - 4);
+    }
+
+class Solution {
+    public String maskPII(String s) {
+        StringBuilder sb=new StringBuilder();
+        int len=s.length();
+        boolean f=false;
+        for(int i=0;i<len;i++){
+            if(s.charAt(i)>='0' && s.charAt(i)<='9'){
+                f=true;
+                break;
+            }
+        }
+        if(f){
+            int count=0;
+            for(int i=0;i<len;i++){
+                if(s.charAt(i)>='0' && s.charAt(i)<='9'){
+                    count++;
+                }
+            }
+            int temp=count-10;
+            if(temp==0){
+                sb.append("***-***-");
+            }else if(temp==1){
+                sb.append("+*-***-***-");
+            }else if(temp==2){
+                sb.append("+**-***-***-");
+            }else{
+                sb.append("+***-***-***-");
+            }
+            for(int i=0;i<len;i++){
+                if(s.charAt(i)>='0' && s.charAt(i)<='9'){
+                    count--;
+                    if(count<4){
+                        sb.append(s.charAt(i));
+                    }
+                }
+            }
+        }else{
+            boolean flag=false;
+            for(int i=0;i<len;i++){
+                if(i==0){
+                    char c=s.charAt(0);
+                    if(c>='A' && c<='Z'){
+                        c=(char)(c+32);
+                    }
+                    sb.append(c);
+                    sb.append("*****");
+                }else if(i+1<s.length() && s.charAt(i+1)=='@'){
+                    char c=s.charAt(i);
+                    if(c>='A' && c<='Z'){
+                        c=(char)(c+32);
+                    }
+                    sb.append(c);
+                }else if (flag||s.charAt(i)=='@'){
+                    flag=true;
+                    char c=s.charAt(i);
+                    if(c>='A' && c<='Z'){
+                        c=(char)(c+32);
+                    }
+                    sb.append(c);
+                }
+            }
+        }
+        return sb.toString();
+    }
+}
