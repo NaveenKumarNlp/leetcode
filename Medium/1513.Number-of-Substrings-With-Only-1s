@@ -1,0 +1,15 @@
+class Solution {
+    public int numSub(String s) {
+        int sum=0,count=0;
+        for(char c:s.toCharArray()){
+            if(c=='1'){
+                count++;
+                sum+=count;
+                sum=sum%1000000007;
+            }else{
+                count=0;
+            }
+        }
+        return sum;
+    }
+}
