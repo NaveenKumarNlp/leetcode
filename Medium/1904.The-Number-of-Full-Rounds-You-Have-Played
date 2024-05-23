@@ -1,0 +1,44 @@
+class Solution {
+    public int numberOfRounds(String loginTime, String logoutTime) {
+        int loginHour=((loginTime.charAt(0)-'0')*10)+(loginTime.charAt(1)-'0');
+        int loginMin=((loginTime.charAt(3)-'0')*10)+(loginTime.charAt(4)-'0');
+
+        int logoutHour=((logoutTime.charAt(0)-'0')*10)+(logoutTime.charAt(1)-'0');
+        int logoutMin=((logoutTime.charAt(3)-'0')*10)+(logoutTime.charAt(4)-'0');
+  
+        if(loginHour==logoutHour && loginMin<logoutMin && Math.abs(loginMin-logoutMin)<15){
+            return 0;
+        }
+
+        if(loginMin>0 && loginMin<=15){
+            loginMin=15;
+        }else if(loginMin>15 && loginMin<=30){
+            loginMin=30;
+        }else if(loginMin>30 && loginMin<=45){
+            loginMin=45;
+        }else if(loginMin>45 && loginMin<=59){
+            loginMin=0;
+            loginHour=(loginHour+1)%24;
+        }
+        if(logoutMin>=0 && logoutMin<15){
+            logoutMin=0;
+        }else if(logoutMin>=15 && logoutMin<30){
+            logoutMin=15;
+        }else if(logoutMin>=30 && logoutMin<45){
+            logoutMin=30;
+        }else if(logoutMin>=45 && logoutMin<=59){
+            logoutMin=45;
+        }
+        
+        int totalLoginMinutes = loginHour * 60 + loginMin;
+        int totalLogoutMinutes = logoutHour * 60 + logoutMin;
+
+        int workMinutes=0;
+        if (totalLoginMinutes > totalLogoutMinutes) {
+            workMinutes = 1440 - totalLoginMinutes + totalLogoutMinutes;
+        } else {
+            workMinutes = totalLogoutMinutes - totalLoginMinutes;
+        }
+        return workMinutes/15;
+    }
+}
