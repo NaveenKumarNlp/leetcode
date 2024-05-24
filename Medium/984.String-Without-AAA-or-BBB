@@ -1,0 +1,35 @@
+class Solution {
+    public String strWithout3a3b(int a, int b) {
+        char []c=new char[a+b];
+        int index=0,n=a+b;
+        int t1=a,t2=b;
+        char c1='a',c2='b';
+        if(a<b){
+            t1=b;
+            t2=a;
+            c1='b';
+            c2='a';
+        }
+        while(index<n && t1!=0 && t2!=0){
+            if(t1-t2<2){
+                c[index++]=c1;
+                t1--;
+                if(index<n){
+                    c[index++]=c2;
+                    t2--;
+                }
+            }else{
+                c[index++]=c1;
+                c[index++]=c1;
+                c[index++]=c2;
+                t1=t1-2;
+                t2=t2-1;
+            }
+        }
+        while(index<n && t1>0){
+            c[index++]=c1;
+            t1--;
+        }
+        return new String(c);
+    }
+}
