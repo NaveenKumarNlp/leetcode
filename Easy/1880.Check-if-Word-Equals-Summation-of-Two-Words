@@ -1,10 +1,11 @@
 class Solution {
     public int intValue(String s){
-        StringBuilder sb=new StringBuilder();
+        int sum=0;
         for(int i=0;i<s.length();i++){
-            sb.append(s.charAt(i)-'a');
+            sum+=(s.charAt(i)-'a');
+            sum*=10;
         }
-        return Integer.valueOf(sb.toString());
+        return sum;
     }
     public boolean isSumEqual(String firstWord, String secondWord, String targetWord) {
         return intValue(firstWord)+intValue(secondWord)==intValue(targetWord);
