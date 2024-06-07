@@ -1,0 +1,19 @@
+class Solution {
+    public boolean isStrictlyPalindromic(int n) {
+        return false;
+        /*int temp=n;
+        for(int i=2;i<=temp-2;i++){
+            StringBuilder sb=new StringBuilder();
+            n=temp;
+            while(n>0){
+                sb.append(n%i);
+                n=n/i;
+            }
+            if(sb.toString()!=sb.reverse().toString()){
+                return false;
+            } 
+              
+        }
+        return true;*/
+    }
+}
