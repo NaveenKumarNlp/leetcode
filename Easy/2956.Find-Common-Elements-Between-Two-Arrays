@@ -1,0 +1,23 @@
+class Solution {
+    public int[] findIntersectionValues(int[] nums1, int[] nums2) {
+        HashMap<Integer,Integer> map1=new HashMap<>();
+        HashMap<Integer,Integer> map2=new HashMap<>();
+
+        for(int i:nums1){
+            map1.put(i,0);
+        }
+        int cnt1=0,cnt2=0;
+        for(int i:nums2){
+            map2.put(i,0);
+            if(map1.containsKey(i)){
+                cnt1++;
+            }
+        }
+        for(int i:nums1){
+            if(map2.containsKey(i)){
+                cnt2++;
+            }
+        }
+        return new int[]{cnt2,cnt1};
+    }
+}
