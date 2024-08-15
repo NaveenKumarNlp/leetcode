@@ -1,0 +1,21 @@
+class Solution {
+    public int[] findMissingAndRepeatedValues(int[][] grid) {
+        int tot=grid[0].length*grid.length+1;
+        int []arr=new int[tot];
+        for(int i=0;i<grid.length;i++){
+            for(int j=0;j<grid[0].length;j++){
+                arr[grid[i][j]]++;
+            }
+        }
+        int mis=0,dup=0;
+        for(int i=1;i<tot;i++){
+            if(arr[i]==0){
+                mis=i;
+            }
+            if(arr[i]==2){
+                dup=i;
+            }
+        }
+        return new int[]{dup,mis};
+    }
+}
