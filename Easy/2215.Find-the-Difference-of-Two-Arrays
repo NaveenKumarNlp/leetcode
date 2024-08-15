@@ -1,0 +1,29 @@
+class Solution {
+    public List<List<Integer>> findDifference(int[] nums1, int[] nums2) {
+        HashMap<Integer,Integer> map=new HashMap<>();
+        for(int i:nums1){
+            map.put(i,map.getOrDefault(i,0)+1);
+        }
+            List<List<Integer>> answer=new ArrayList<>();
+            List<Integer> l1=new ArrayList<>();
+            List<Integer> l2=new ArrayList<>();
+            answer.add(l1);
+            answer.add(l2);
+
+        for(int i:nums2){
+            if(map.containsKey(i)){
+                map.put(i,0);
+            }else{
+                map.put(i,0);
+                answer.get(1).add(i);
+            }
+        }
+        for(int i:map.keySet()){
+            if(map.get(i)!=0){
+                answer.get(0).add(i);
+            }
+        }
+        return answer;
+
+    }
+}
