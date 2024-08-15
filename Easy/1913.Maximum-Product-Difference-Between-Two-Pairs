@@ -1,0 +1,22 @@
+class Solution {
+    public int maxProductDifference(int[] nums) {
+        int max=Integer.MIN_VALUE,min=Integer.MAX_VALUE;
+        int h1=max,h2=max,l1=min,l2=min;
+        for(int i:nums){
+            if(h1<i){
+                h2=h1;
+                h1=i;
+            }else if(h2<i){
+                h2=i;
+            }
+
+            if(l1>i){
+                l2=l1;
+                l1=i;
+            }else if(l2>i){
+                l2=i;
+            }
+        }
+        return (h1*h2)-(l1*l2);
+    }
+}
