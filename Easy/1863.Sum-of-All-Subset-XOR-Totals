@@ -1,0 +1,20 @@
+class Solution {
+    public int subsetXORSum(int[] nums) {
+        int sum=0;
+        int n = nums.length;
+        int numOfSubsets = 1 << n;
+        for (int i = 0; i < numOfSubsets; i++) {
+            
+            int sub=0;
+            for (int j = 0; j < n; j++) {
+                if ((i & (1 << j)) != 0) {
+                    sub^=nums[j];
+                }
+            }
+            
+            sum+=sub;
+        }
+        
+        return sum;
+    }
+}
