@@ -1,0 +1,15 @@
+class Solution {
+    public boolean check(int c,int p){
+        if((c%2==0 && p%2!=0) || (c%2!=0 && p%2==0)){
+            return false;
+        }else {
+            return true;
+        }
+    }
+    public boolean checkTwoChessboards(String coordinate1, String coordinate2) {
+        int c1=coordinate1.charAt(0)-'a',c2=coordinate2.charAt(0)-'a';
+        int p1=coordinate1.charAt(1)-'0',p2=coordinate2.charAt(1)-'0';
+        return check(c1,p1) == check(c2,p2);
+
+    }
+}
