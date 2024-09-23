@@ -1,0 +1,27 @@
+class Solution {
+    public boolean wordPattern(String pattern, String s) {
+        String []str=s.split(" ");
+        if(pattern.length()!=str.length){
+            return false;
+        }
+        HashMap<Character,String> map1=new HashMap<>();
+        HashMap<String,Character> map2=new HashMap<>();
+        for(int i=0;i<pattern.length();i++){
+            char c=pattern.charAt(i);
+            String st=str[i];
+            if(map1.containsKey(c) && !st.equals(map1.get(c))){
+                return false;
+            }
+            if(map2.containsKey(st) && c!=map2.get(st)){
+                return false;
+            }
+            if(!map1.containsKey(c)){
+                map1.put(c,st);
+            }
+            if(!map2.containsKey(st)){
+                map2.put(st,c);
+            }
+        }
+        return true;
+    }
+}
