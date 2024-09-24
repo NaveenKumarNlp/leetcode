@@ -1,0 +1,19 @@
+class Solution {
+    public int numDifferentIntegers(String word) {
+        HashSet<String> set=new HashSet<>();
+        for(int i=0;i<word.length();i++){
+            if(word.charAt(i)>='0' && word.charAt(i)<='9'){
+                while(i<word.length() && word.charAt(i)=='0'){
+                    i++;
+                }
+                int start=i;
+                while(i<word.length() && (word.charAt(i)>='0' && word.charAt(i)<='9')){
+                    i++;
+                }
+                String s=word.substring(start,i);
+                set.add(s);
+            }
+        }
+        return set.size();
+    }
+}
