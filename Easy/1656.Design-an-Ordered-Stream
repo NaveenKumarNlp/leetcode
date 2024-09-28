@@ -1,0 +1,30 @@
+class OrderedStream {
+    String []str;
+    int ptr=1;
+    public OrderedStream(int n) {
+        str=new String[n+1];
+    }
+    
+    public List<String> insert(int idKey, String value) {
+        ArrayList<String> list=new ArrayList<>();
+        str[idKey]=value;
+        boolean flag=true;
+        if(ptr==idKey){
+            int i=ptr;
+            while(i<str.length && str[i]!=null){
+                if(str[i]!=null){
+                    list.add(str[i]);
+                }
+                i++;
+            }
+            ptr=i;
+        }
+        return list;
+    }
+}
+
+/**
+ * Your OrderedStream object will be instantiated and called as such:
+ * OrderedStream obj = new OrderedStream(n);
+ * List<String> param_1 = obj.insert(idKey,value);
+ */
