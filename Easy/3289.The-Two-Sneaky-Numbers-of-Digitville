@@ -1,0 +1,19 @@
+class Solution {
+    public int[] getSneakyNumbers(int[] nums) {
+        int x = nums[nums.length-1];
+        while(nums[x]!=x){
+            int temp = nums[x];
+            nums[x] = x;
+            x = temp;
+        }
+        int a = x;
+        x = nums[nums.length-2];
+        while(nums[x]!=x){
+            int temp = nums[x];
+            nums[x] = x;
+            x = temp;
+        }
+        int b = x;
+        return new int[]{a,b};
+    }
+}
