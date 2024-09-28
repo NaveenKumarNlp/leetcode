@@ -1,0 +1,44 @@
+class Solution {
+    public boolean equalFrequency(String word) {
+        int[] freq = new int[26]; // To store the frequency of each character
+        int[] count = new int[word.length() + 1]; // To store the number of characters with each frequency
+        
+        // Step 1: Count frequencies of each character
+        for (char c : word.toCharArray()) {
+            freq[c - 'a']++;
+        }
+
+        // Step 2: Count occurrences of each frequency
+        for (int f : freq) {
+            if (f > 0) count[f]++;
+        }
+
+        // Case 1: Only one unique frequency (all characters have the same frequency or all are 1)
+        int uniqueFreqCount = 0, minFreq = Integer.MAX_VALUE, maxFreq = 0;
+
+        for (int i = 1; i <= word.length(); i++) {
+            if (count[i] > 0) {
+                uniqueFreqCount++;
+                minFreq = Math.min(minFreq, i);
+                maxFreq = Math.max(maxFreq, i);
+            }
+        }
+
+        // If there's only one frequency, it must be 1 or all characters have that frequency
+        if (uniqueFreqCount == 1) {
+            return minFreq == 1 || count[minFreq] == 1;
+        }
+
+        // Case 2: There are exactly two unique frequencies
+        if (uniqueFreqCount == 2) {
+            // One of the frequencies must be 1 and it appears exactly once
+            // Or the frequencies differ by 1, and the higher one appears exactly once
+            if ((minFreq == 1 && count[minFreq] == 1) || 
+                (maxFreq - minFreq == 1 && count[maxFreq] == 1)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+}
