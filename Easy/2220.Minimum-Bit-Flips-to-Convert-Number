@@ -1,0 +1,26 @@
+class Solution {
+    public int minBitFlips(int x, int y) {
+        int count=0;
+        boolean flag1=true,flag2=true;
+        while(x>0 || y>0){
+            int rem1=x%2;
+            int rem2=y%2;
+            x/=2;
+            y/=2;
+            if(flag1 && flag2){
+                if(rem1!=rem2){
+                    count++;
+                }
+            }else if(rem1==1 || rem2==1){
+                count++;
+            }
+            if(x<=0){
+                flag1=false;
+            }
+            if(y<=0){
+                flag2=false;
+            }
+        }
+        return count;
+    }
+}
