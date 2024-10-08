@@ -1,0 +1,10 @@
+class Solution {
+    public int xorOperation(int n, int start) {
+        int sum=0,val=start;
+        for(int i=1;i<=n;i++){
+            sum^=val;
+            val+=2;
+        }
+        return sum;
+    }
+}
