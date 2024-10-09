@@ -1,0 +1,17 @@
+class Solution {
+    public int generateKey(int num1, int num2, int num3) {
+        int val=0,base=1,sum=0;
+        while(num1>0 || num2>0 || num2>0){
+            int v1=0,v2=0,v3=0;
+            v1=num1%10;
+            v2=num2%10;
+            v3=num3%10;
+            sum=(Math.min(v1,Math.min(v2,v3)))*base+sum;
+            base*=10;
+            num1/=10;
+            num2/=10;
+            num3/=10;
+        }
+        return sum;
+    }
+}
