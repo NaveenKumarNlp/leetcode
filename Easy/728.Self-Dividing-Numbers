@@ -1,0 +1,22 @@
+class Solution {
+    public List<Integer> selfDividingNumbers(int left, int right) {
+
+        ArrayList<Integer> list=new ArrayList<>();
+        while(left<=right){
+            int num=left,tot=0,div=0;
+            while(num>0){
+                tot++;
+                int rem=num%10;
+                if(rem!=0 && left%rem==0){
+                    div++;
+                }
+                num/=10;
+            }
+            if(tot==div){
+                list.add(left);
+            }
+            left++;
+        }
+        return list;
+    }
+}
