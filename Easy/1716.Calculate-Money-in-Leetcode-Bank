@@ -1,0 +1,13 @@
+class Solution {
+    public int totalMoney(int n) {
+        int sum=0,val=1,step=0;
+        for(int i=0;i<n;i++,step++){
+            if(i!=0 && i%7==0){
+                val++;
+                step=0;
+            }
+            sum+=val+step;
+        }
+        return sum;
+    }
+}
