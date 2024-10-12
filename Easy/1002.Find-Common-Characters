@@ -1,4 +1,5 @@
 class Solution {
+
    public List<String> commonChars(String[] A) {
         int[] last = count(A[0]);
         for (int i = 1; i < A.length; i++) {
