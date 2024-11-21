@@ -1,0 +1,35 @@
+class Solution {
+    public int[] decrypt(int[] arr, int k) {
+        int []ans=new int[arr.length];
+       if(k==0){
+            for(int i=0;i<arr.length;i++){
+                ans[i]=0;
+            }
+       }else if(k>0){
+            for(int i=0;i<arr.length;i++){
+                int x=i+1,temp=k;
+                while(temp>0){
+                    if(x<arr.length){
+                        ans[i]+=arr[x++];
+                        temp--;
+                    }else{
+                        x=0;
+                    }
+                }
+            }
+       }else{
+            for(int i=0;i<arr.length;i++){
+                int x=i-1,temp=k*-1;
+                while(temp>0){
+                    if(x>=0){
+                        ans[i]+=arr[x--];
+                        temp--;
+                    }else{
+                        x=arr.length-1;
+                    }
+                }
+            }
+       }
+       return ans; 
+    }
+}
