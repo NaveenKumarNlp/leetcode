@@ -1,0 +1,22 @@
+class Solution {
+    public int countBalls(int lowLimit, int highLimit) {
+        int min=lowLimit,max=highLimit;
+        HashMap<Integer,Integer> map=new HashMap<>();
+        while(min<=max){
+            int sum=0,temp=min;
+            while(temp>0){
+                sum+=temp%10;
+                temp/=10;
+            }
+            min++;
+            map.put(sum,map.getOrDefault(sum,0)+1);
+        }
+        min=0;
+        for(int i:map.values()){
+            if(min<i){
+                min=i;
+            }
+        }
+        return min;
+    }
+}
