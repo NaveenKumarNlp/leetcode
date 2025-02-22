@@ -1,0 +1,12 @@
+class Solution {
+    public int minimumOperations(int[] nums) {
+        int[] occ = new int[101];
+        for (int i = nums.length - 1; i >= 0; i--) {
+            if (occ[nums[i]] == 1) {
+                return i/3+1;
+            }
+            occ[nums[i]]++;
+        }
+        return 0;
+    }
+}
