@@ -1,0 +1,23 @@
+class Solution {
+    public int[] transformArray(int[] nums) {
+        int odd=0,even=0;
+        for(int i:nums){
+            if(i%2==0){
+                even++;
+            }else{
+                odd++;
+            }
+        }
+        int index=0;
+        while(even>0){
+            nums[index++]=0;
+            even--;
+        }
+        while(odd>0){
+            nums[index++]=1;
+            odd--;
+        }
+        
+        return nums;
+    }
+}
