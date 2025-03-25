@@ -20,6 +20,7 @@ class Solution {
 
 
 
+
 class Solution {
     public int heightChecker(int[] heights) {
         int []expected=heights.clone();
