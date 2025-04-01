@@ -1,0 +1,11 @@
+class Solution {
+    public int countTestedDevices(int[] batteryPercentages) {
+        int k = 0;
+        for (int a : batteryPercentages) {
+            if (a > k) {
+                k++;
+            }
+        }
+        return k;
+    }
+}
