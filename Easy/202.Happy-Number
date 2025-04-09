@@ -1,0 +1,16 @@
+public class Solution {
+    public boolean isHappy(int n) {
+        while (n != 1 && n != 4) { 
+            int current = n;
+            int sum = 0;
+            while (current > 0) {
+                int digit = current % 10; 
+                sum += digit * digit;    
+                current /= 10;           
+            }
+
+            n = sum; 
+        }
+        return n == 1; 
+    }
+}
