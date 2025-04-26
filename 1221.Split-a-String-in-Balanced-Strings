@@ -5,6 +5,7 @@ class Solution {
             if(s.charAt(i)=='R'){
                 r++;
             }else if(s.charAt(i)=='L'){
+
                 l++;
             }
             if(r==l){
