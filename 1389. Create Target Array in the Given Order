@@ -15,6 +15,7 @@ class Solution {
 }
 
 
+
 class Solution {
     public int[] createTargetArray(int[] nums, int[] index) {
         List<Integer> l=new ArrayList<Integer>();
