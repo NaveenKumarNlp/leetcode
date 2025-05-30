@@ -13,9 +13,6 @@ class Solution {
         return target;
     }
 }
-
-
-
 class Solution {
     public int[] createTargetArray(int[] nums, int[] index) {
         List<Integer> l=new ArrayList<Integer>();
