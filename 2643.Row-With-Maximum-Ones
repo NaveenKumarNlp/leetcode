@@ -17,3 +17,4 @@ class Solution {
         return new int[]{rowIndex,max};
     }
 }
+
