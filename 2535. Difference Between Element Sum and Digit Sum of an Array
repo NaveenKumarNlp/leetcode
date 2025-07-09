@@ -12,3 +12,4 @@ class Solution {
         return sum1-sum2;
     }
 }
+
