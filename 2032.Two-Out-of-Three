@@ -25,6 +25,7 @@ class Solution {
 
 
 
+
 public List<Integer> twoOutOfThree(int[] nums1, int[] nums2, int[] nums3) {
 	Set<Integer> set1 = new HashSet<>(), set2 = new HashSet<>(), set3 = new HashSet<>(), set = new HashSet<>();
 	for(int i: nums1) { set1.add(i); set.add(i); }
