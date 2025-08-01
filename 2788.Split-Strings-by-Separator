@@ -7,6 +7,7 @@ class Solution {
     }
 }
 
+
 class Solution {
     public List<String> splitWordsBySeparator(List<String> words, char separator) {
         List<String> nm=new ArrayList<>();
