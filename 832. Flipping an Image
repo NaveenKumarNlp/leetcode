@@ -24,3 +24,4 @@ The idea is simple. For each row, use two pointers. One is going forward and the
 [1,0,0,1]        [0,1,1,0]
 [0,1,1,1]  --->  [0,0,0,1]
 [1,0,1,0]        [1,0,1,0]
+
