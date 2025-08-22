@@ -12,8 +12,6 @@ class Solution {
             }
             map.put(nums[i],map.getOrDefault(nums[i],0)+1);
         }
-        
-        
         return res;
     }
 }
