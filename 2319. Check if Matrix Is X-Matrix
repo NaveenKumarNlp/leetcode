@@ -18,3 +18,4 @@ class Solution {
 
 non diagonals ===>  i!=j && i+j!=len-1
 diagonals     ===>  i==j || (i+j==len-1 && i!=j)
+
