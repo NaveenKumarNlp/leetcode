@@ -19,4 +19,3 @@ class Solution {
         return hs.size()>=3?max3:max1;
     }
 }
-
