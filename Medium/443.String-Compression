@@ -1,0 +1,20 @@
+class Solution {
+    public int compress(char[] chars) {
+        int ind=0,flag=0,i=0;
+        while(i<chars.length){
+            char c=chars[i];
+            int count=0;
+            while(i<chars.length && c==chars[i]){
+                count++;
+                i++;
+            }
+            chars[ind++]=c;
+            if(count>1){
+                for (char digit : String.valueOf(count).toCharArray()) {
+                    chars[ind++] = digit;
+                }
+            }
+        }
+        return ind;
+    }
+}
