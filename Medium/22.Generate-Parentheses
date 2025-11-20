@@ -1,0 +1,20 @@
+class Solution {
+    List<String> al=new ArrayList<>();
+    public void genParenthesis(int n,int open,int close,String output){
+        if(close==n){
+            al.add(output);
+            return;
+        }
+        if(open<n){
+            genParenthesis(n,open+1,close,output+"(");
+        }
+        if(open>close){
+            genParenthesis(n,open,close+1,output+")");
+        }
+    }
+    public List<String> generateParenthesis(int n) {
+        al.clear();
+        genParenthesis(n,0,0,"");
+        return al;
+    }
+}
