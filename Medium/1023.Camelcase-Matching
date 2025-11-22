@@ -5,7 +5,6 @@ class Solution {
             res.add(isMatch(query, pattern));
         return res;
     }
-
     private boolean isMatch(String query, String pattern) {
         int i = 0;
         for (char c: query.toCharArray()) {
