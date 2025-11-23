@@ -1,0 +1,75 @@
+class Solution {
+    public static int[][] sort(int ip[][],int n) {
+		for(int i=0;i<n;i++) {
+
+			for(int j=i+1;j<n;j++) {
+
+				if(ip[i][0]>ip[j][0]) {
+					int t1=ip[i][1];
+					ip[i][1]=ip[j][1];
+					ip[j][1]=t1;
+					
+					int t2=ip[i][0];
+					ip[i][0]=ip[j][0];
+					ip[j][0]=t2;
+				}
+			}
+		}
+		
+		return ip;
+	}
+    public int[][] merge(int[][] ip) {
+        int n = ip.length;
+        int count = n;
+        ip=sort(ip,n);
+        for (int i = 0; i < n; i++) {
+
+            if (ip[i][0] == -1) continue;
+
+            for (int j = 0; j < n; j++) {
+
+                if (ip[j][0] == -1 || i == j) continue;
+
+                int s1 = ip[i][0], e1 = ip[i][1];
+                int s2 = ip[j][0], e2 = ip[j][1];
+
+                if (s1 <= s2 && e1 >= s2) {
+
+                    ip[i][1] = (e1 > e2) ? e1 : e2;
+
+                    ip[j][0] = -1;
+                    ip[j][1] = -1;
+                    count--;
+
+                }else if (s2 <= s1 && e2 >= s1) {
+
+                    ip[i][0] = s2;
+
+                    ip[i][1] = (e1 > e2) ? e1 : e2;
+
+                    ip[j][0] = -1;
+                    ip[j][1] = -1;
+                    count--;
+                }
+                else if (s1 == s2 && e1 == e2) {
+                    ip[j][0] = -1;
+                    ip[j][1] = -1;
+                    count--;
+                }
+            }
+        }
+
+        int[][] temp = new int[count][2];
+        int ind = 0;
+
+        for (int[] t : ip) {
+            if (t[0] != -1) {
+                temp[ind][0] = t[0];
+                temp[ind][1] = t[1];
+                ind++;
+            }
+        }
+
+        return temp;
+    }
+}
