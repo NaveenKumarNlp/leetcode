@@ -1,0 +1,15 @@
+class Solution {
+    public int[] recoverOrder(int[] order, int[] friends) {
+        int[] answer=new int[friends.length];
+        int ind=0;
+        for(int num:order){
+            for(int x:friends){
+                if(x==num){
+                    answer[ind++]=num;
+                    break;
+                }
+            }
+        }
+        return answer;
+    }
+}
