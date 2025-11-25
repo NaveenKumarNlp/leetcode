@@ -1,0 +1,16 @@
+class Solution {
+    public long sumAndMultiply(int n) {
+        int num=1,base=1,tot=0;
+        long sum=0;
+        while(n>0){
+            int rem=n%10;
+            if(rem!=0){
+                tot+=rem;
+                sum=(rem*base)+sum;
+                base*=10;
+            }
+            n/=10;
+        }
+        return sum*tot;
+    }
+}
