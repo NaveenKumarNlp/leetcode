@@ -1,0 +1,56 @@
+class Solution {
+    public List<String> validateCoupons(String[] code, String[] businessLine, boolean[] isActive) {
+        int i=0,n=code.length;
+        ArrayList<String> list=new ArrayList<>();
+        HashMap<String,ArrayList<String>> map=new HashMap<>();
+        while(i<n){
+            String c=code[i];
+            String b=businessLine[i];
+            boolean f=isActive[i];
+            if(f && c.length()!=0){
+                if(b.equals("electronics") || b.equals("grocery") || b.equals("pharmacy") || b.equals("restaurant")){
+                    boolean flag=true;
+                    for(int j=0;j<c.length();j++){
+                        char ch=c.charAt(j);
+                        if(!((ch>='a' && ch<='z') || (ch>='A' && ch<='Z') || (ch>='0' && ch<='9') || ch=='_')){
+                           flag=false;
+                            break;
+                        }
+                    }
+                    if(flag){
+                        if(!map.containsKey(b)){
+                            map.put(b,new ArrayList<>());
+                        }
+                        map.get(b).add(c);
+                    }
+                }
+            }
+            i++;
+        }
+        ArrayList<String> temp=new ArrayList<>();
+        if(map.containsKey("electronics")){
+            temp=map.get("electronics");
+            Collections.sort(temp);
+            list.addAll(temp);
+        }
+        if(map.containsKey("grocery")){
+            temp=new ArrayList<>();
+            temp=map.get("grocery");
+            Collections.sort(temp);
+            list.addAll(temp);
+        }
+        if(map.containsKey("pharmacy")){
+            temp=new ArrayList<>();
+            temp=map.get("pharmacy");
+            Collections.sort(temp);
+            list.addAll(temp);
+        }
+        if(map.containsKey("restaurant")){
+            temp=new ArrayList<>();
+            temp=map.get("restaurant");
+            Collections.sort(temp);
+            list.addAll(temp);
+        }
+        return list;
+    }
+}
