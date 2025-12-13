@@ -1,0 +1,25 @@
+class Solution {
+    public boolean checkPrime(int n){
+        int count=0;
+        int x=2;
+        while(x<=(n+1)/2){
+            if(n%x==0){
+                count++;
+            }
+            x++;
+        }
+        return count==0;
+    }
+    public boolean checkPrimeFrequency(int[] nums) {
+        int []temp=new int[101];
+        for(int n:nums){
+            temp[n]++;
+        }
+        for(int n:temp){
+            if(n>1 && checkPrime(n)){
+                return true;
+            }
+        }
+        return false;
+    }
+}
