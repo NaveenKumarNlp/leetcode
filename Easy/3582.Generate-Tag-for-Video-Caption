@@ -1,0 +1,34 @@
+class Solution {
+    public String generateTag(String caption) {
+        StringBuilder sb=new StringBuilder();
+        int index=1,count=0;
+        sb.append('#');
+        for(int i=0;i<caption.length() && index<100;i++){
+            char c=caption.charAt(i);
+            if(c == ' '){
+                count = 0;
+            }else if(c>='a' && c<='z' || c>='A' && c<='Z'){
+                count++;
+                if(index==1 && count==1 && c>='A' && c<='Z'){
+                    sb.append((char)(c+32));
+                    index++;
+                }else if(index==1  && count==1 && c>='a' && c<='z'){
+                    sb.append(c);
+                    index++;
+                }else if(count==1 && c>='a' && c<='z') {
+                    sb.append((char) (c -32));
+                    index++;
+                }else if(count!=1 && c>='A' && c<='Z'){
+                    sb.append((char)(c+32));
+                    index++;
+                }else{
+                    sb.append(c);
+                    index++;
+                }
+            }else{
+                count++;
+            }
+        }
+        return sb.toString();
+    }
+}
