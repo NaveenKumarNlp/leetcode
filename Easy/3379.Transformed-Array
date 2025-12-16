@@ -1,0 +1,23 @@
+class Solution {
+    public int[] constructTransformedArray(int[] nums) {
+        int len=nums.length;
+        int []temp=new int[len];
+        for(int i=0;i<nums.length;i++){
+            int x=nums[i];
+            int cur=0,ind=0;
+            if(x>0){
+                cur=i+nums[i];
+                ind=cur%len;
+                temp[i]=nums[cur];
+            }else if(x<0){
+                cur=(x%len);
+                ind=i+cur;
+                if(ind<0){
+                    ind=len+ind;
+                }
+                temp[i]=nums[ind];
+            }
+        }
+        return temp;
+    }
+}
