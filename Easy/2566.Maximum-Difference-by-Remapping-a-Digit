@@ -1,0 +1,47 @@
+class Solution {
+    public int minMaxDifference(int num) {
+        HashMap<Integer,Integer> map=new HashMap<>();
+        int temp=num,count=0,ind=0;
+        while(num>0){
+            int rem=num%10;
+            count++;
+            num/=10;
+        }
+        int arr[]=new int[count];
+        ind=count-1;
+        num=temp;
+        while(num>0){
+            int rem=num%10;
+            arr[ind--]=rem;
+            num/=10;
+        }
+        int min=0,max=0,ht=0,lt=0,i=0;
+        boolean flag1=false,flag2=false;
+        while(i<count){
+            max=max*10;
+            if(!flag1 && arr[i]==9){
+                max+=arr[i];
+            }else if(!flag1){
+                flag1=true;
+                ht=arr[i];
+                max+=9;
+            }else if(ht==arr[i]){
+                max+=9;
+            }else{
+                max+=arr[i];
+            }
+
+            min=min*10;
+            if(!flag2){
+                flag2=true;
+                lt=arr[i];
+                min=0;
+            }else if(lt!=arr[i]){
+                min+=arr[i];
+            }
+
+            i++;
+        }
+        return max-min;
+    }
+}
