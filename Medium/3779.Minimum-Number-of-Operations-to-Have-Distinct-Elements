@@ -1,0 +1,29 @@
+class Solution {
+    public static void check(int[] nums,int index,HashMap<Integer,Integer> map){
+        for(int i=index;i<index+3 && i<nums.length;i++){
+            if(map.containsKey(nums[i])){
+                map.put(nums[i],map.get(nums[i])-1);
+                if(map.get(nums[i])==0){
+                    map.remove(nums[i]);
+                }
+            }
+        }
+    }
+    public int minOperations(int[] nums) {
+        int index=0,len=nums.length,count=0;
+        HashMap<Integer,Integer> map=new HashMap<>();
+
+        for(int i:nums){
+            map.put(i,map.getOrDefault(i,0)+1);
+        }
+        while(index<len){
+            if(map.size()==len-index){
+                return count;
+            }
+            check(nums,index,map);
+            index+=3;
+            count++;
+        }
+        return count;
+    }
+}
