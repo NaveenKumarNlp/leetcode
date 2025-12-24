@@ -1,0 +1,21 @@
+class Solution {
+    public int maxProduct(int n) {
+        int []temp=new int[10];
+        int t=n;
+        while(n>0){
+            temp[n%10]++;
+            n/=10;
+        }
+        int count=0,max=1,i=9;
+        while(i>=0 && count<2){
+            if(temp[i]>1 && count==0){
+                return i*i;
+            }else if(temp[i]>0){
+                max=max*i;
+                count++;
+            }
+            i--;
+        }
+        return max;
+    }
+}
