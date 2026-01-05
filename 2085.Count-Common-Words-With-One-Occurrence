@@ -21,8 +21,6 @@ class Solution {
         return once;
     }
 }
-
-
 class Solution {
     public int countWords(String[] words1, String[] words2) {
         Map<String,Integer> map=new HashMap<>();
