@@ -9,9 +9,6 @@ class Solution {
         return sum;
     }
 }
-
-
-
 class Solution {
     public int prefixCount(String[] words, String pref) {
         int original=0;
