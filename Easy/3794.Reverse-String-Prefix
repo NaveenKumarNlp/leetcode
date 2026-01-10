@@ -1,0 +1,16 @@
+class Solution {
+    public String reversePrefix(String s, int k) {
+        char[] arr = new char[s.length()];
+        k = Math.min(k, s.length());
+        int x = 0;
+        while(x < k){
+            arr[x] = s.charAt(k-x-1);
+            x++;
+        }
+        while(x < s.length()){
+            arr[x] = s.charAt(x);
+            x++;
+        }
+        return new String(arr);
+    }
+}
