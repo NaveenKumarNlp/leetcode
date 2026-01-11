@@ -1,0 +1,19 @@
+class Solution {
+    public int residuePrefixes(String s) {
+       char[] c = new char[26];
+
+       int distinctCount = 0;
+       int residue=0;
+       for(int i=0;i<s.length();i++){
+            if(c[s.charAt(i)-'a']==0){
+                c[s.charAt(i)-'a']++;
+                distinctCount++;
+            }
+            if((i+1)%3==distinctCount){
+                residue++;
+            }
+       }
+       return residue;
+
+    }
+}
